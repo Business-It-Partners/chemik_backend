@@ -1,0 +1,94 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dgclick.com/chimeki_developer
+    username: dgUser
+    password: sljlsdfj!!sdljl343
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jpa:
+    hibernate:
+      ddl-auto: update  # Can be 'create', 'update', 'validate', 'none'
+    show-sql: false       # Set to 'true' to show SQL queries in the console
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  tomcat:
+    connection-timeout: 120000  # 120 seconds
+  servlet:
+    session:
+      timeout: 120  # 120 seconds
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: hrimal802@gmail.com
+#    password: uvigezbgskwuwcht
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
+#jwt:
+#  secret:
+#    otp: 5E86E3B220BF4478A7C2F743137F3C8F9B2F9A4D7E1C3B5A8D0F2E4G6I8K0M2O4Q6
+#    access: 7A1C3E5G7I9K1M3O5Q7S9U1W3Y5A7C9E1G3I5K7M9O1Q3S5U7W9Y1B3D5F7H9J1L3
+#    refresh: 2B4D6F8H0J2L4N6P8R0T2V4X6Z8B0D2F4H6J8L0N2P4R6T8V0X2Z4A6C8E0G2I4K6
+#  expiration:
+#    otp: 300000  # 5 minutes in milliseconds
+#    access: 604800000  # 1 hour in milliseconds
+#    refresh: 604800000  # 7 days in milliseconds
+
+logging:
+  level:
+    root: INFO
+    com.dg_click.backend: DEBUG
+  file:
+    name: ./application.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ./application.log.%d{yyyy-MM-dd}.%i
+      max-file-size: 10MB
+      total-size-cap: 100MB
+      max-history: 30
+      clean-history-on-start: false
+    append: true
+
+cors:
+  allowed-origins: "http://localhost:3000, https://dgclick.com"
+  allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+  allowed-headers: "*"
+  allow-credentials: true
+
+#security:
+#  require-ssl: false  # Set to true if using HTTPS
+
+#app:
+#  otp:
+#    length: 5
+#    validity: 300  # 5 minutes in seconds
+#  backend_url: https://api.dgclick.com
+
+#  email:
+#    from: noreply@dgclick.com
+#    subject:
+#      registration: "Complete Your Registration"
+#      reset-password: "Reset Your Password"
+#
+#  user:
+#    default-role: ROLE_USER
+#
+#file:
+#  storage:
+#    mode: local
+#    local:
+#      directory: /home/dgClick_nepal/files/
+#
+#

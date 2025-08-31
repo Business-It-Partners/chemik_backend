@@ -29,6 +29,7 @@ public class DeviceTokenService {
 
     /**
      * Register or update device token for a user
+     * Fixed to handle cross-user device scenarios
      */
     @Transactional
     public ApiResponse<String> registerDeviceToken(Long userId, RegisterDeviceTokenRequestDTO request) {
@@ -41,69 +42,97 @@ public class DeviceTokenService {
 
             // Validate device type
             if (!VALID_DEVICE_TYPES.contains(request.getDeviceType().toUpperCase())) {
-                return ApiResponse.error("Invalid device type. Allowed: " + String.join(", ", VALID_DEVICE_TYPES), "INVALID_DEVICE_TYPE");
+                return ApiResponse.error("Invalid device type. Allowed: " +
+                        String.join(", ", VALID_DEVICE_TYPES), "INVALID_DEVICE_TYPE");
             }
 
-            // Check if token already exists for this user
-            Optional<DeviceToken> existingToken = deviceTokenRepository.findByUserIdAndFcmToken(userId, request.getFcmToken());
+            String fcmToken = request.getFcmToken();
+            if (fcmToken == null || fcmToken.trim().isEmpty()) {
+                return ApiResponse.error("FCM token cannot be empty", "INVALID_FCM_TOKEN");
+            }
 
-            if (existingToken.isPresent()) {
-                // Update existing token
-                DeviceToken token = existingToken.get();
-                token.setActive(true);
-                token.setDeviceType(request.getDeviceType().toUpperCase());
-                token.setDeviceInfo(request.getDeviceInfo());
-                token.setUpdatedAt(LocalDateTime.now());
-                token.setLastUsedAt(LocalDateTime.now());
-                deviceTokenRepository.save(token);
+            // 🔥 KEY FIX: Check if this FCM token already exists for ANY user
+            Optional<DeviceToken> existingTokenForAnyUser = deviceTokenRepository.findByFcmToken(fcmToken);
 
-                log.info("Updated existing device token for user: {}", userId);
+            if (existingTokenForAnyUser.isPresent()) {
+                DeviceToken existingToken = existingTokenForAnyUser.get();
+
+                if (existingToken.getUserId().equals(userId)) {
+                    // Same user, same token - just update it
+                    updateExistingToken(existingToken, request);
+                    log.info("Updated existing device token for same user: {}", userId);
+                } else {
+                    // Different user has this token - transfer ownership
+                    // This handles the Samsung->Oppo->Samsung scenario
+                    log.info("Transferring FCM token from user {} to user {}",
+                            existingToken.getUserId(), userId);
+
+                    transferTokenToNewUser(existingToken, userId, request);
+                }
             } else {
-                // Create new token
-                DeviceToken newToken = new DeviceToken();
-                newToken.setUserId(userId);
-                newToken.setFcmToken(request.getFcmToken());
-                newToken.setDeviceType(request.getDeviceType().toUpperCase());
-                newToken.setDeviceInfo(request.getDeviceInfo());
-                newToken.setActive(true);
-                newToken.setCreatedAt(LocalDateTime.now());
-                newToken.setUpdatedAt(LocalDateTime.now());
-                newToken.setLastUsedAt(LocalDateTime.now());
-                deviceTokenRepository.save(newToken);
-
-                // Optionally deactivate old tokens (keep only latest token per user)
-//                 deviceTokenRepository.deactivateOldTokensForUser(userId, request.getFcmToken(), LocalDateTime.now());
-
-                log.info("Registered new device token for user: {}", userId);
+                // Completely new token - create new record
+                createNewDeviceToken(userId, request);
+                log.info("Created new device token for user: {}", userId);
             }
 
-            return ApiResponse.success("Token registered successfully", "Device token registered successfully");
+            return ApiResponse.success("Device token registered successfully",
+                    "Device token registered successfully");
 
         } catch (Exception e) {
-            log.error("Error registering device token for user {}: {}", userId, e.getMessage(), e);
-            return ApiResponse.error("Failed to register device token", "TOKEN_REGISTRATION_FAILED");
+            log.error("Error registering device token for user {}: {}", userId, e.getMessage());
+            return ApiResponse.error("Failed to register device token: " + e.getMessage(),
+                    "REGISTRATION_ERROR");
         }
     }
 
     /**
-     * Get all active tokens for a user
+     * Update existing token with new device info
+     */
+    private void updateExistingToken(DeviceToken token, RegisterDeviceTokenRequestDTO request) {
+        token.setActive(true);
+        token.setDeviceType(request.getDeviceType().toUpperCase());
+        token.setDeviceInfo(request.getDeviceInfo());
+        token.setUpdatedAt(LocalDateTime.now());
+        token.setLastUsedAt(LocalDateTime.now());
+        deviceTokenRepository.save(token);
+    }
+
+    /**
+     * Transfer token ownership to new user
+     */
+    private void transferTokenToNewUser(DeviceToken existingToken, Long newUserId,
+                                        RegisterDeviceTokenRequestDTO request) {
+        // Update the existing token to new user
+        existingToken.setUserId(newUserId);
+        existingToken.setActive(true);
+        existingToken.setDeviceType(request.getDeviceType().toUpperCase());
+        existingToken.setDeviceInfo(request.getDeviceInfo());
+        existingToken.setUpdatedAt(LocalDateTime.now());
+        existingToken.setLastUsedAt(LocalDateTime.now());
+        deviceTokenRepository.save(existingToken);
+    }
+
+    /**
+     * Create completely new device token
+     */
+    private void createNewDeviceToken(Long userId, RegisterDeviceTokenRequestDTO request) {
+        DeviceToken newToken = new DeviceToken();
+        newToken.setUserId(userId);
+        newToken.setFcmToken(request.getFcmToken());
+        newToken.setDeviceType(request.getDeviceType().toUpperCase());
+        newToken.setDeviceInfo(request.getDeviceInfo());
+        newToken.setActive(true);
+        newToken.setCreatedAt(LocalDateTime.now());
+        newToken.setUpdatedAt(LocalDateTime.now());
+        newToken.setLastUsedAt(LocalDateTime.now());
+        deviceTokenRepository.save(newToken);
+    }
+
+    /**
+     * Get active tokens for a user (for notifications)
      */
     public List<DeviceToken> getActiveTokensForUser(Long userId) {
-        return deviceTokenRepository.findActiveTokensByUserId(userId);
-    }
-
-    /**
-     * Get all active tokens except for specific user (for broadcast)
-     */
-    public List<DeviceToken> getActiveTokensExcludingUser(Long userId) {
-        return deviceTokenRepository.findActiveTokensExcludingUser(userId);
-    }
-
-    /**
-     * Get active tokens for regular users (non-institutional)
-     */
-    public List<DeviceToken> getActiveTokensForRegularUsers() {
-        return deviceTokenRepository.findActiveTokensForRegularUsers();
+        return deviceTokenRepository.findActiveTokensForUser(userId);
     }
 
     /**
@@ -111,10 +140,11 @@ public class DeviceTokenService {
      */
     @Transactional
     public void markTokenAsUsed(String fcmToken) {
-        try {
-            deviceTokenRepository.updateLastUsedAt(fcmToken, LocalDateTime.now());
-        } catch (Exception e) {
-            log.error("Error updating last used time for token: {}", e.getMessage());
+        Optional<DeviceToken> tokenOpt = deviceTokenRepository.findByFcmToken(fcmToken);
+        if (tokenOpt.isPresent()) {
+            DeviceToken token = tokenOpt.get();
+            token.setLastUsedAt(LocalDateTime.now());
+            deviceTokenRepository.save(token);
         }
     }
 
@@ -123,39 +153,66 @@ public class DeviceTokenService {
      */
     @Transactional
     public void markTokenAsInactive(String fcmToken) {
-        try {
-            Optional<DeviceToken> tokenOpt = deviceTokenRepository.findByFcmTokenAndIsActiveTrue(fcmToken);
-            if (tokenOpt.isPresent()) {
-                DeviceToken token = tokenOpt.get();
-                token.setActive(false);
-                token.setUpdatedAt(LocalDateTime.now());
-                deviceTokenRepository.save(token);
-                log.info("Marked token as inactive: {}", fcmToken.substring(0, Math.min(fcmToken.length(), 20)) + "...");
-            }
-        } catch (Exception e) {
-            log.error("Error marking token as inactive: {}", e.getMessage());
+        Optional<DeviceToken> tokenOpt = deviceTokenRepository.findByFcmToken(fcmToken);
+        if (tokenOpt.isPresent()) {
+            DeviceToken token = tokenOpt.get();
+            token.setActive(false);
+            token.setUpdatedAt(LocalDateTime.now());
+            deviceTokenRepository.save(token);
+            log.info("Marked FCM token as inactive: {}...",
+                    fcmToken.substring(0, Math.min(fcmToken.length(), 20)));
         }
     }
 
     /**
-     * Cleanup inactive tokens older than 30 days (scheduled task)
+     * Get user's device tokens (for admin/debugging)
      */
-    @Scheduled(cron = "0 0 2 * * *") // Run daily at 2 AM
+    public List<DeviceToken> getUserDeviceTokens(Long userId) {
+        return deviceTokenRepository.findByUserId(userId);
+    }
+
+    /**
+     * Clean up inactive tokens (scheduled task)
+     * Run daily at 2 AM
+     */
+    @Scheduled(cron = "0 0 2 * * *")
     @Transactional
     public void cleanupInactiveTokens() {
         try {
+            // Remove tokens inactive for more than 30 days
             LocalDateTime cutoffDate = LocalDateTime.now().minusDays(30);
-            deviceTokenRepository.removeInactiveTokensOlderThan(cutoffDate);
-            log.info("Cleaned up inactive device tokens older than 30 days");
+            List<DeviceToken> inactiveTokens = deviceTokenRepository
+                    .findInactiveTokensOlderThan(cutoffDate);
+
+            if (!inactiveTokens.isEmpty()) {
+                deviceTokenRepository.deleteAll(inactiveTokens);
+                log.info("Cleaned up {} inactive device tokens older than 30 days",
+                        inactiveTokens.size());
+            }
         } catch (Exception e) {
             log.error("Error during token cleanup: {}", e.getMessage());
         }
     }
 
     /**
-     * Get token count for user
+     * Remove specific token (when user logs out)
      */
-    public Long getActiveTokenCountForUser(Long userId) {
-        return deviceTokenRepository.countActiveTokensByUserId(userId);
+    @Transactional
+    public ApiResponse<String> removeDeviceToken(Long userId, String fcmToken) {
+        try {
+            Optional<DeviceToken> tokenOpt = deviceTokenRepository
+                    .findByUserIdAndFcmToken(userId, fcmToken);
+
+            if (tokenOpt.isPresent()) {
+                deviceTokenRepository.delete(tokenOpt.get());
+                log.info("Removed device token for user: {}", userId);
+                return ApiResponse.success("Token removed successfully", "Token removed successfully");
+            } else {
+                return ApiResponse.error("Token not found", "TOKEN_NOT_FOUND");
+            }
+        } catch (Exception e) {
+            log.error("Error removing device token: {}", e.getMessage());
+            return ApiResponse.error("Failed to remove token", "REMOVAL_ERROR");
+        }
     }
 }

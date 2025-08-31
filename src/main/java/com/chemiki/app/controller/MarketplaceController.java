@@ -97,13 +97,13 @@ public class MarketplaceController {
         }
     }
 
-    // Mark product as sold (set availability to false)
+    // Mark product as sold (set availability to false) - now returns product details
     @PatchMapping("/products/{productId}/mark-sold")
-    public ResponseEntity<ApiResponse<Void>> markProductAsSold(
+    public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> markProductAsSold(
             @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = marketplaceService.updateProductAvailability(productId, userId, false);
+        ApiResponse<ProductDetailResponseDTO> response = marketplaceService.updateProductAvailability(productId, userId, false);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -114,13 +114,13 @@ public class MarketplaceController {
         }
     }
 
-    // Mark product as available (set availability to true)
+    // Mark product as available (set availability to true) - now returns product details
     @PatchMapping("/products/{productId}/mark-available")
-    public ResponseEntity<ApiResponse<Void>> markProductAsAvailable(
+    public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> markProductAsAvailable(
             @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = marketplaceService.updateProductAvailability(productId, userId, true);
+        ApiResponse<ProductDetailResponseDTO> response = marketplaceService.updateProductAvailability(productId, userId, true);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -130,7 +130,6 @@ public class MarketplaceController {
             return ResponseEntity.status(status).body(response);
         }
     }
-
     // Get current user's products
     @GetMapping("/user/{userId}")
     public ResponseEntity<ApiResponse<List<ProductResponseDTO>>> getUserProducts(

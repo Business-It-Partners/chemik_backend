@@ -22,6 +22,11 @@ public class User {
     @Column
     private String email;
 
+
+    @Column
+    private String website;
+
+
     @Column(nullable = false)
     private String phoneNumber;
 

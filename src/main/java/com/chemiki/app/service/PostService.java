@@ -89,13 +89,14 @@ public class PostService {
             post = postRepository.save(post);
 
             // 🔥 NEW: Send notifications for specific post types
-            if (Arrays.asList("NEWS", "NOTICE", "ALERT", "LOST_AND_FOUND").contains(request.getPostType())) {
-                String title = getNotificationTitle(request.getPostType(), user.getUsername());
-                String body = getNotificationBody(request.getContent(), request.getPostType());
+             if (Arrays.asList("NEWS", "NOTICE", "ALERT", "LOST_AND_FOUND").contains(request.getPostType())) {
+                String title = getNotificationTitle(request.getPostType(), user.getUsername(), user.isInstitutionalUser());
+                String body = request.getContent().length() > 100 ? request.getContent().substring(0, 100) + "..." : request.getContent();
 
                 // Send broadcast notification asynchronously
                 fcmService.sendBroadcastNotification(userId, title, body, request.getPostType(), post.getId());
             }
+
 
             // Convert to response DTO
             PostResponseDTO responseDTO = convertToResponseDTO(post, user, userId);
@@ -309,40 +310,21 @@ public class PostService {
     }
 
     // 🔥 NEW: Helper methods for notifications
-    private String getNotificationTitle(String postType, String authorName) {
+    // Helper method for notifications
+    private String getNotificationTitle(String postType, String authorName, boolean isInstitutionalUser) {
+        String source = isInstitutionalUser ? authorName : authorName + "'s Post";
         switch (postType) {
             case "NEWS":
-                return "📰 News Update from " + authorName;
+                return "📰 New Update: " + source;
             case "NOTICE":
-                return "📢 Important Notice from " + authorName;
+                return "📢 Notice: " + source;
             case "ALERT":
-                return "🚨 Alert from " + authorName;
+                return "🚨 Urgent Alert: " + source;
             case "LOST_AND_FOUND":
-                return "🔍 Lost & Found from " + authorName;
+                return "🔍 Lost & Found: " + source;
             default:
-                return "New Post from " + authorName;
+                return "New Post: " + source;
         }
     }
 
-    private String getNotificationBody(String content, String postType) {
-        String prefix = "";
-        switch (postType) {
-            case "NEWS":
-                prefix = "📰 ";
-                break;
-            case "NOTICE":
-                prefix = "📢 ";
-                break;
-            case "ALERT":
-                prefix = "🚨 ";
-                break;
-            case "LOST_AND_FOUND":
-                prefix = "🔍 ";
-                break;
-        }
-
-        // Truncate content for notification
-        String truncated = content.length() > 100 ? content.substring(0, 100) + "..." : content;
-        return prefix + truncated;
-    }
 }

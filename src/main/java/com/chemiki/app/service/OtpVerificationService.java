@@ -72,6 +72,7 @@ public class OtpVerificationService {
             user.setWard(tempUser.getWard());
             user.setInstitutionCategory(tempUser.getInstitutionCategory());
             user.setVerified(false);
+            user.setWebsite("");
             user.setCreatedAt(LocalDateTime.now());
             user.setUpdatedAt(LocalDateTime.now());
             userRepository.save(user);

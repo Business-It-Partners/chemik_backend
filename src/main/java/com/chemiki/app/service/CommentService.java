@@ -59,11 +59,9 @@ public class CommentService {
             postRepository.incrementCommentCount(request.getPostId());
 
             // 🔥 NEW: Send notification to post owner (if not commenting on own post)
-//            if (!post.getUserId().equals(userId)) {
-//                fcmService.sendCommentNotification(userId, post.getUserId(), request.getPostId(), request.getContent());
-//            }fa
-
+            if (!post.getUserId().equals(userId)) {
                 fcmService.sendCommentNotification(userId, post.getUserId(), request.getPostId(), request.getContent());
+            }
 
             // Convert to response DTO
             CommentResponseDTO responseDTO = convertToResponseDTO(comment, user, userId);

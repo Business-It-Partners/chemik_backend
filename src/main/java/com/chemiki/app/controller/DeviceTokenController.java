@@ -51,17 +51,6 @@ public class DeviceTokenController {
         }
     }
 
-    /**
-     * Get device token count for current user
-     * GET /api/device-tokens/count
-     */
-    @GetMapping("/count")
-    public ResponseEntity<ApiResponse<Long>> getTokenCount(
-            @AuthenticationPrincipal UserDetails userDetails) {
 
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        Long count = deviceTokenService.getActiveTokenCountForUser(userId);
 
-        return ResponseEntity.ok(ApiResponse.success(count, "Token count retrieved successfully"));
-    }
 }

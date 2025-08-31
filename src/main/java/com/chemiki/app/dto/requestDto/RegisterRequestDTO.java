@@ -8,6 +8,7 @@ public class RegisterRequestDTO {
     private String password;
     private String phoneNumber;
     private String email;
+
     private boolean isInstitutionalUser;
     private String dateOfBirth;
     private String district;

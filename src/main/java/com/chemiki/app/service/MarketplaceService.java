@@ -220,7 +220,8 @@ public class MarketplaceService {
         }
     }
 
-    public ApiResponse<Void> updateProductAvailability(Long productId, Long userId, boolean isAvailable) {
+
+    public ApiResponse<ProductDetailResponseDTO> updateProductAvailability(Long productId, Long userId, boolean isAvailable) {
         try {
             Product product = productRepository.findByIdAndDeletedFalse(productId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: " + productId));
@@ -229,11 +230,35 @@ public class MarketplaceService {
                 return ApiResponse.error("You are not authorized to update this product", "UNAUTHORIZED");
             }
 
+            // Update availability and timestamp
             product.setAvailable(isAvailable);
             product.setUpdatedAt(LocalDateTime.now());
-            productRepository.save(product);
+            product = productRepository.save(product);
 
-            return ApiResponse.success(null, isAvailable ? "Product marked as available" : "Product marked as sold out");
+            // Get owner details for response
+            User owner = userRepository.findById(product.getUserId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner not found for product id: " + productId));
+
+            // Convert to detailed response DTO
+            ProductDetailResponseDTO dto = new ProductDetailResponseDTO();
+            dto.setId(product.getId());
+            dto.setName(product.getName());
+            dto.setDescription(product.getDescription());
+            dto.setPrice(product.getPrice());
+            dto.setCategory(product.getCategory());
+            dto.setLocation(product.getLocation());
+            dto.setOwnerContact(product.getOwnerContact());
+            dto.setCondition(product.getCondition());
+            dto.setAvailable(product.isAvailable()); // Updated availability
+            dto.setUserId(product.getUserId());
+            dto.setUsername(owner.getUsername());
+            dto.setImages(product.getProductImageUrls());
+            dto.setCreatedAt(product.getCreatedAt());
+            dto.setUpdatedAt(product.getUpdatedAt()); // Updated timestamp
+
+            String message = isAvailable ? "Product marked as available" : "Product marked as sold";
+            return ApiResponse.success(dto, message);
+
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "PRODUCT_NOT_FOUND");
         } catch (Exception e) {

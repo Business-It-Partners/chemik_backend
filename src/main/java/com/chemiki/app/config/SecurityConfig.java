@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login", "/api/auth/otp-verification", "/api/auth/register", "/api/auth/refresh-token","/api/nepali/detect").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/otp-verification", "/api/auth/register", "/api/auth/refresh-token","/api/auth/forgot-password", "/api/auth/reset-password").permitAll()
                         .requestMatchers("/uploads/**").permitAll() // ✅ Allow all upload paths
                         .requestMatchers("/uploads/post-images/**").permitAll() // ✅ Specific paths
                         .requestMatchers("/uploads/marketplace-images/**").permitAll() // ✅ Specific paths

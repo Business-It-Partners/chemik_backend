@@ -354,22 +354,6 @@ public class FCMService {
     }
 
     /**
-     * Helper method to create basic data payload (legacy)
-     */
-    private Map<String, String> createDataPayload(String notificationType, Long senderId, Long relatedEntityId) {
-        Map<String, String> data = new HashMap<>();
-        data.put("type", notificationType);
-        data.put("senderId", String.valueOf(senderId));
-
-        if (relatedEntityId != null) {
-            data.put("relatedEntityId", String.valueOf(relatedEntityId));
-        }
-
-        data.put("click_action", "OPEN_APP");
-        return data;
-    }
-
-    /**
      * Helper method to check if token error indicates invalid token
      */
     private boolean isTokenInvalid(FirebaseMessagingException e) {

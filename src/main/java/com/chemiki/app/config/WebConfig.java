@@ -26,6 +26,9 @@ public class WebConfig implements WebMvcConfigurer {
         // Serve marketplace images
         registry.addResourceHandler("/uploads/marketplace-images/**")
                 .addResourceLocations("file:uploads/marketplace-images/");
+        // 🔥 NEW: Serve profile images
+        registry.addResourceHandler("/uploads/profile-images/**")
+                .addResourceLocations("file:uploads/profile-images/");
 
         // Serve any other uploads
         registry.addResourceHandler("/uploads/**")

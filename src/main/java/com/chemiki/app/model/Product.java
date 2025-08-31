@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "products")
+@Table(name = "marketplace_products")
 public class Product {
 
     @Id
@@ -15,26 +15,35 @@ public class Product {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String name; // Product name
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String description; // Product description
 
     @Column(nullable = false)
-    private Double price;
+    private Double price; // Product price
 
     @Column(nullable = false)
-    private String category; // Remains String for flexibility
+    private String category; // Product category (e.g., "Electronics", "Clothing", "Books")
 
     @Column(nullable = false)
-    private boolean isAvailable = true; // true = available, false = sold out
+    private String location; // Product location (e.g., "Kathmandu", "Pokhara", "Chitwan")
 
     @Column(nullable = false)
-    private Long userId; // Foreign key referencing User.id
+    private String ownerContact; // Contact number for this specific product
+
+    @Column(nullable = false)
+    private String condition; // Product condition (e.g., "New", "Like New", "Good", "Fair", "Poor")
+
+    @Column(nullable = false)
+    private boolean isAvailable = true; // Product availability (true = available, false = sold out)
+
+    @Column(nullable = false)
+    private Long userId; // Foreign key referencing User.id (seller)
 
     @Column
     @ElementCollection
-    private List<String> images; // List of image URLs
+    private List<String> productImageUrls; // List of image URLs
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

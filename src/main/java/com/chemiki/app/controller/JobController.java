@@ -14,14 +14,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true") // 👈 Add this line
 @RestController
 @RequestMapping("/api/jobs")
 @RequiredArgsConstructor
+
 public class JobController {
 
     private final JobService jobService;
 
-    @PostMapping("/job")
+    @PostMapping("/create-job")
     public ResponseEntity<ApiResponse<JobResponseDTO>> uploadJob(
             @Valid @RequestBody CreateJobRequestDTO request, // Changed from @ModelAttribute to @RequestBody (no files)
             @AuthenticationPrincipal UserDetails userDetails) {
@@ -47,7 +49,7 @@ public class JobController {
         }
     }
 
-    @GetMapping("/jobs")
+    @GetMapping("/all-jobs")
     public ResponseEntity<ApiResponse<List<JobResponseDTO>>> getAllJobs(
             @RequestParam(required = false) String category) {
         ApiResponse<List<JobResponseDTO>> response = jobService.getAllJobs( );
@@ -60,7 +62,7 @@ public class JobController {
         }
     }
 
-    @GetMapping("/job/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<JobDetailResponseDTO>> getJobDetail(
             @PathVariable Long id) {
         ApiResponse<JobDetailResponseDTO> response = jobService.getJobDetail(id);
@@ -73,7 +75,7 @@ public class JobController {
         }
     }
 
-    @DeleteMapping("/job/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> softDeleteJob(
             @PathVariable Long id,
             @AuthenticationPrincipal UserDetails userDetails) {
@@ -89,13 +91,13 @@ public class JobController {
         }
     }
 
-    @PatchMapping("/job/{id}/availability")
-    public ResponseEntity<ApiResponse<Void>> updateJobAvailability(
+    // Close job (set isOpen = false)
+    @PatchMapping("/job/{id}/close")
+    public ResponseEntity<ApiResponse<Void>> closeJob(
             @PathVariable Long id,
-            @RequestParam boolean isOpen,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = jobService.updateJobAvailability(id, userId, isOpen);
+        ApiResponse<Void> response = jobService.closeJob(id, userId);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -106,16 +108,18 @@ public class JobController {
         }
     }
 
-    @GetMapping("/my-jobs")
-    public ResponseEntity<ApiResponse<List<JobResponseDTO>>> getMyJobs(
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<ApiResponse<List<JobResponseDTO>>> getUserJobs(
+            @PathVariable Long userId,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<JobResponseDTO>> response = jobService.getMyJobs(userId);
+        ApiResponse<List<JobResponseDTO>> response = jobService.getUserJobs(userId);
+
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
             String errorCode = response.getErrorCode();
-            HttpStatus status = errorCode.equals("JOB_NOT_FOUND") ? HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus status = errorCode.equals("USER_NOT_FOUND") ?
+                    HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
             return ResponseEntity.status(status).body(response);
         }
     }

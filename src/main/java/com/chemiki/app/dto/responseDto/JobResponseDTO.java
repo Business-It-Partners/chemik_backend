@@ -6,9 +6,16 @@ import java.time.LocalDateTime;
 @Data
 public class JobResponseDTO {
     private Long id;
-    private String title; // Changed from name to title
+    private String title;
     private String description;
-    private Double salary; // Changed from price to salary
-
+    private Double salary;
+    private String category;
+    private String location;
+    private String contactNo;
+    private String jobType;
+    private boolean isOpen;
+    private Long userId; // Owner's user ID
+    private String username; // Owner's username
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

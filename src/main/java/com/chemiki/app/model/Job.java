@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "jobs")
+@Table(name = "user_jobs")
 public class Job {
 
     @Id
@@ -14,19 +14,28 @@ public class Job {
     private Long id;
 
     @Column(nullable = false)
-    private String title; // Changed from name to title for job context
+    private String title; // Job title (e.g., "Software Developer", "Marketing Manager")
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String description; // Job description
 
     @Column(nullable = false)
-    private Double salary; // Changed from price to salary for job context
+    private Double salary; // Salary amount
 
     @Column(nullable = false)
-    private String category; // Remains String for flexibility (e.g., IT, Construction)
+    private String category; // Job category (e.g., "IT", "Construction", "Healthcare")
 
     @Column(nullable = false)
-    private boolean isOpen = true; // Changed from isAvailable to isOpen (true = open, false = closed)
+    private String location; // Job location (e.g., "Kathmandu", "Pokhara", "Remote")
+
+    @Column(nullable = false)
+    private String contactNo; // Contact number for this specific job
+
+    @Column(nullable = false)
+    private String jobType; // Job type (e.g., "Full-time", "Part-time", "Contract", "Freelance", "Internship")
+
+    @Column(nullable = false)
+    private boolean isOpen = true; // Job status (true = open, false = closed)
 
     @Column(nullable = false)
     private Long userId; // Foreign key referencing User.id (employer)

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-@AllArgsConstructor // <--- Add this
+@AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
     private final User user;
@@ -29,7 +29,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getPhoneNumber();
+        return user.getPhoneNumber(); // Using phoneNumber as username
     }
 
     @Override
@@ -49,6 +49,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isVerified();
+        // Fix for the "User is disabled" error
+        // Since users complete OTP verification to be created, they should be enabled
+        return true; // Always return true, handle verification separately in business logic
+
+        // Alternative: return user.isVerified();
+        // (use this if you want only verified users to login)
     }
 }

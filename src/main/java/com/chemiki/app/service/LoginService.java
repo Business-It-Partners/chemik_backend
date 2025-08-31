@@ -21,16 +21,13 @@ import org.springframework.web.server.ResponseStatusException;
 public class LoginService {
 
     private final UserRepository userRepository;
-    private final RefreshTokenService refreshTokenService;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider tokenProvider;
 
     public ApiResponse<LoginResponseDTO> login(LoginRequestDTO request) {
         try {
             String phoneNumber = request.getPhoneNumber();
             String password = request.getPassword();
-
 
             // Check if user exists
             User user = userRepository.findByPhoneNumber(phoneNumber)
@@ -43,9 +40,9 @@ public class LoginService {
                         new UsernamePasswordAuthenticationToken(phoneNumber, password)
                 );
 
-                // Generate tokens
-                String accessToken = tokenProvider.generateAccessToken(authentication);
-                String refreshToken = tokenProvider.generateRefreshToken(phoneNumber);
+                // Generate tokens (both are JWTs, no database storage)
+                String accessToken = jwtTokenProvider.generateAccessToken(authentication);
+                String refreshToken = jwtTokenProvider.generateRefreshToken(phoneNumber);
 
                 LoginResponseDTO responseDTO = LoginResponseDTO.builder()
                         .accessToken(accessToken)
@@ -54,7 +51,7 @@ public class LoginService {
 
                 return ApiResponse.success(responseDTO, "Login successful");
             } catch (AuthenticationException e) {
-                return ApiResponse.error("Invalid phone number or password", "AUTHENTICATION_FAILED");
+                return ApiResponse.error(e.getMessage(), "AUTHENTICATION_FAILED");
             }
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
@@ -63,38 +60,49 @@ public class LoginService {
         }
     }
 
+    public ApiResponse<UserDetailResponseDTO> getUserDetails(Long userId, String phoneNumber) {
+        try {
+            // Validate input: ensure at least one parameter is provided
+            if ((userId == null || userId <= 0) && (phoneNumber == null || phoneNumber.isEmpty())) {
+                return ApiResponse.error("Either user ID or phone number is required", "INVALID_INPUT");
+            }
 
-   // -------------- to get the user detail information via dto
-   public ApiResponse<UserDetailResponseDTO> getUserDetails(String phoneNumber) {
-       try {
-           // Validate input
-           if (phoneNumber == null || phoneNumber.isEmpty()) {
-               return ApiResponse.error("Phone number is required", "INVALID_INPUT");
-           }
+            // Fetch user based on provided parameter
+            User user;
+            if (userId != null && userId > 0) {
+                user = userRepository.findById(userId)
+                        .orElseThrow(() ->
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this user ID"));
+            } else {
+                user = userRepository.findByPhoneNumber(phoneNumber)
+                        .orElseThrow(() ->
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
+            }
 
-           // Check if user exists
-           User user = userRepository.findByPhoneNumber(phoneNumber)
-                   .orElseThrow(() ->
-                           new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
+            // Map User to UserDetailResponseDTO
+            UserDetailResponseDTO responseDTO = new UserDetailResponseDTO(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getEmail(),
+                    user.getPhoneNumber(),
+                    user.getProfilePhotoUrl(),
+                    user.getCoverPhotoUrl(),
+                    user.isInstitutionalUser(),
+                    user.getDateOfBirth(),
+                    user.getDistrict(),
+                    user.getPalika(),
+                    user.getWard(),
+                    user.getInstitutionCategory(),
+                    user.isVerified(),
+                    user.getCreatedAt(),
+                    user.getUpdatedAt()
+            );
 
-           // Map User to UserDetailResponseDTO
-           UserDetailResponseDTO responseDTO = new UserDetailResponseDTO(
-                   user.getId(),
-                   user.getUsername(),
-                   user.getEmail(),
-                   user.getPhoneNumber(),
-                   user.getProfilePhoto(),
-                   user.getCoverPhoto(),
-                   user.isInstitutionalUser(),
-                   user.isVerified()
-
-           );
-
-           return ApiResponse.success(responseDTO, "User details retrieved successfully");
-       } catch (ResponseStatusException e) {
-           return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
-       } catch (Exception e) {
-           return ApiResponse.error("An error occurred while retrieving user details", "INTERNAL_SERVER_ERROR");
-       }
-   }
+            return ApiResponse.success(responseDTO, "User details retrieved successfully");
+        } catch (ResponseStatusException e) {
+            return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
+        } catch (Exception e) {
+            return ApiResponse.error("An error occurred while retrieving user details", "INTERNAL_SERVER_ERROR");
+        }
+    }
 }

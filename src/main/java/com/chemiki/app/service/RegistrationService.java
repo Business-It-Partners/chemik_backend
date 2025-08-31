@@ -44,7 +44,6 @@ public class RegistrationService implements UserDetailsService {
             String password = request.getPassword();
             String email = request.getEmail();
 
-
             // Check if phone number already exists in User table
             if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) {
                 return ApiResponse.error("Phone number " + phoneNumber + " is already registered", "PHONE_NUMBER_EXISTS");
@@ -56,7 +55,14 @@ public class RegistrationService implements UserDetailsService {
             tempUser.setPassword(password);
             tempUser.setEmail(email);
             tempUser.setPhoneNumber(phoneNumber);
-            tempUser.setInstitutionalUser(false);
+            tempUser.setInstitutionalUser(request.isInstitutionalUser());
+            tempUser.setProfilePhotoUrl(request.getProfilePhotoUrl());
+            tempUser.setCoverPhotoUrl(request.getCoverPhotoUrl());
+            tempUser.setDateOfBirth(request.getDateOfBirth());
+            tempUser.setDistrict(request.getDistrict());
+            tempUser.setPalika(request.getPalika());
+            tempUser.setWard(request.getWard());
+            tempUser.setInstitutionCategory(request.getInstitutionCategory());
             tempUser.setCreatedAt(LocalDateTime.now());
             tempUser.setExpiresAt(LocalDateTime.now().plusMinutes(30));
             tempUser = tempUserRepository.save(tempUser);

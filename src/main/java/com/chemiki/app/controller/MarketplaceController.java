@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,14 +22,15 @@ public class MarketplaceController {
 
     private final MarketplaceService marketplaceService;
 
-    @PostMapping("/product")
-    public ResponseEntity<ApiResponse<ProductResponseDTO>> uploadProduct(
+    // Create/Upload a new product
+    @PostMapping("/products")
+    public ResponseEntity<ApiResponse<ProductResponseDTO>> createProduct(
             @Valid @ModelAttribute CreateProductRequestDTO request,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
         ApiResponse<ProductResponseDTO> response = marketplaceService.uploadProduct(request, userId);
         if (response.isSuccess()) {
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } else {
             String errorCode = response.getErrorCode();
             HttpStatus status;
@@ -41,6 +41,9 @@ public class MarketplaceController {
                 case "INVALID_INPUT":
                     status = HttpStatus.BAD_REQUEST;
                     break;
+                case "IMAGE_UPLOAD_FAILED":
+                    status = HttpStatus.BAD_REQUEST;
+                    break;
                 default:
                     status = HttpStatus.INTERNAL_SERVER_ERROR;
                     break;
@@ -49,7 +52,7 @@ public class MarketplaceController {
         }
     }
 
-
+    // Get all products (with optional category filter)
     @GetMapping("/products")
     public ResponseEntity<ApiResponse<List<ProductResponseDTO>>> getAllProducts(
             @RequestParam(required = false) String category) {
@@ -63,10 +66,11 @@ public class MarketplaceController {
         }
     }
 
-    @GetMapping("/product/{id}")
-    public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> getProductDetail(
-            @PathVariable Long id) {
-        ApiResponse<ProductDetailResponseDTO> response = marketplaceService.getProductDetail(id);
+    // Get single product details
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> getProductDetails(
+            @PathVariable Long productId) {
+        ApiResponse<ProductDetailResponseDTO> response = marketplaceService.getProductDetail(productId);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -76,14 +80,13 @@ public class MarketplaceController {
         }
     }
 
-
-//---------------------- to soft delete a product
-    @DeleteMapping("/product/{id}")
-    public ResponseEntity<ApiResponse<Void>> softDeleteProduct(
-            @PathVariable Long id,
+    // Delete a product (soft delete)
+    @DeleteMapping("/products/{productId}")
+    public ResponseEntity<ApiResponse<Void>> deleteProduct(
+            @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = marketplaceService.softDeleteProduct(id, userId);
+        ApiResponse<Void> response = marketplaceService.softDeleteProduct(productId, userId);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -94,15 +97,13 @@ public class MarketplaceController {
         }
     }
 
-
-    // --------------------------- to update product availability
-    @PatchMapping("/product/{id}/availability")
-    public ResponseEntity<ApiResponse<Void>> updateProductAvailability(
-            @PathVariable Long id,
-            @RequestParam boolean isAvailable,
+    // Mark product as sold (set availability to false)
+    @PatchMapping("/products/{productId}/mark-sold")
+    public ResponseEntity<ApiResponse<Void>> markProductAsSold(
+            @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = marketplaceService.updateProductAvailability(id, userId, isAvailable);
+        ApiResponse<Void> response = marketplaceService.updateProductAvailability(productId, userId, false);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -113,18 +114,39 @@ public class MarketplaceController {
         }
     }
 
-
-    @GetMapping("/my-products")
-    public ResponseEntity<ApiResponse<List<ProductResponseDTO>>> getMyProducts(
+    // Mark product as available (set availability to true)
+    @PatchMapping("/products/{productId}/mark-available")
+    public ResponseEntity<ApiResponse<Void>> markProductAsAvailable(
+            @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<ProductResponseDTO>> response = marketplaceService.getMyProducts(userId);
+        ApiResponse<Void> response = marketplaceService.updateProductAvailability(productId, userId, true);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
             String errorCode = response.getErrorCode();
-            HttpStatus status = errorCode.equals("PRODUCT_NOT_FOUND") ? HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus status = errorCode.equals("PRODUCT_NOT_FOUND") ? HttpStatus.NOT_FOUND :
+                    errorCode.equals("UNAUTHORIZED") ? HttpStatus.FORBIDDEN : HttpStatus.INTERNAL_SERVER_ERROR;
             return ResponseEntity.status(status).body(response);
         }
     }
+
+    // Get current user's products
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<ApiResponse<List<ProductResponseDTO>>> getUserProducts(
+            @PathVariable Long userId,
+            @AuthenticationPrincipal UserDetails userDetails) {
+        ApiResponse<List<ProductResponseDTO>> response = marketplaceService.getUserProducts(userId);
+
+        if (response.isSuccess()) {
+            return ResponseEntity.ok(response);
+        } else {
+            String errorCode = response.getErrorCode();
+            HttpStatus status = errorCode.equals("USER_NOT_FOUND") ?
+                    HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity.status(status).body(response);
+        }
+    }
+
+
 }

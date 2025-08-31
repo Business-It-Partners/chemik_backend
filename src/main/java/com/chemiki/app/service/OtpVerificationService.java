@@ -64,7 +64,14 @@ public class OtpVerificationService {
             user.setEmail(tempUser.getEmail());
             user.setPhoneNumber(tempUser.getPhoneNumber());
             user.setInstitutionalUser(tempUser.isInstitutionalUser());
-            user.setVerified(!tempUser.isInstitutionalUser());
+            user.setProfilePhotoUrl(tempUser.getProfilePhotoUrl());
+            user.setCoverPhotoUrl(tempUser.getCoverPhotoUrl());
+            user.setDateOfBirth(tempUser.getDateOfBirth());
+            user.setDistrict(tempUser.getDistrict());
+            user.setPalika(tempUser.getPalika());
+            user.setWard(tempUser.getWard());
+            user.setInstitutionCategory(tempUser.getInstitutionCategory());
+            user.setVerified(false);
             user.setCreatedAt(LocalDateTime.now());
             user.setUpdatedAt(LocalDateTime.now());
             userRepository.save(user);
@@ -74,7 +81,7 @@ public class OtpVerificationService {
             tempUserRepository.delete(tempUser);
 
             OtpVerificationResponseDTO response = new OtpVerificationResponseDTO();
-             response.setMessage("Account registered successfully");
+            response.setMessage("Account registered successfully");
 
             return ApiResponse.success(response, "Account registered successfully");
         } catch (ResourceNotFoundException e) {

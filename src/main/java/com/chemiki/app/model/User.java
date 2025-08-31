@@ -26,13 +26,28 @@ public class User {
     private String phoneNumber;
 
     @Column
-    private String profilePhoto;
+    private String profilePhotoUrl;
 
     @Column
-    private String coverPhoto;
+    private String coverPhotoUrl;
 
     @Column(nullable = false)
     private boolean isInstitutionalUser;
+
+    @Column
+    private String dateOfBirth;
+
+    @Column
+    private String district;
+
+    @Column
+    private String palika;
+
+    @Column
+    private String ward;
+
+    @Column
+    private String institutionCategory;
 
     @Column(nullable = false)
     private boolean verified = false;

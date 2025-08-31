@@ -9,4 +9,11 @@ public class RegisterRequestDTO {
     private String phoneNumber;
     private String email;
     private boolean isInstitutionalUser;
+    private String dateOfBirth;
+    private String district;
+    private String palika;
+    private String ward;
+    private String institutionCategory;
+    private String profilePhotoUrl;
+    private String coverPhotoUrl;
 }

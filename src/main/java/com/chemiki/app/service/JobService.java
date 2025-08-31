@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,15 +34,21 @@ public class JobService {
                 return ApiResponse.error("Verification required for institutional users", "UNVERIFIED_USER");
             }
 
-            if (request.getTitle() == null || request.getSalary() == null || request.getPhoneNumber() == null) {
-                return ApiResponse.error("All required fields (title, salary, phone number) are mandatory", "INVALID_INPUT");
+            // Validate required fields
+            if (request.getTitle() == null || request.getSalary() == null ||
+                    request.getJobType() == null || request.getLocation() == null ||
+                    request.getContactInfo() == null) {
+                return ApiResponse.error("All required fields (title, salary, job type, location, contact info) are mandatory", "INVALID_INPUT");
             }
 
             Job job = new Job();
             job.setTitle(request.getTitle());
             job.setDescription(request.getDescription());
             job.setSalary(request.getSalary());
-            job.setCategory(""); // Can be blank for now
+            job.setJobType(request.getJobType());
+            job.setLocation(request.getLocation());
+            job.setContactNo(request.getContactInfo());
+            job.setCategory(""); // Set as empty string for now as requested
             job.setOpen(true);
             job.setUserId(userId);
             job.setCreatedAt(LocalDateTime.now());
@@ -53,32 +60,47 @@ public class JobService {
             responseDTO.setTitle(job.getTitle());
             responseDTO.setDescription(job.getDescription());
             responseDTO.setSalary(job.getSalary());
-
+            responseDTO.setCategory(job.getCategory());
+            responseDTO.setLocation(job.getLocation());
+            responseDTO.setContactNo(job.getContactNo());
+            responseDTO.setJobType(job.getJobType());
+            responseDTO.setOpen(job.isOpen());
+            responseDTO.setUsername(user.getUsername());
             responseDTO.setCreatedAt(job.getCreatedAt());
+            responseDTO.setUpdatedAt(job.getUpdatedAt());
 
             return ApiResponse.success(responseDTO, "Job uploaded successfully");
         } catch (Exception e) {
-            return ApiResponse.error("An error occurred while uploading the job", "INTERNAL_SERVER_ERROR");
+
+            return ApiResponse.error(e.getMessage(), "INTERNAL_SERVER_ERROR");
         }
     }
 
     public ApiResponse<List<JobResponseDTO>> getAllJobs() {
         try {
-            List<Job> jobs;
-
-                jobs = jobRepository.findAllOpenOrderByCreatedAtDesc();
-                if (jobs.isEmpty()) {
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No jobs available");
-                }
+            List<Job> jobs = jobRepository.findAllOpenOrderByCreatedAtDesc();
+            if (jobs.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No jobs available");
+            }
 
             List<JobResponseDTO> responseDTOs = jobs.stream().map(job -> {
+                // Get user details for username
+                User owner = userRepository.findById(job.getUserId()).orElse(null);
+
                 JobResponseDTO dto = new JobResponseDTO();
                 dto.setId(job.getId());
                 dto.setTitle(job.getTitle());
                 dto.setDescription(job.getDescription());
                 dto.setSalary(job.getSalary());
-
+                dto.setCategory(job.getCategory());
+                dto.setLocation(job.getLocation());
+                dto.setContactNo(job.getContactNo());
+                dto.setJobType(job.getJobType());
+                dto.setOpen(job.isOpen());
+                dto.setUserId(job.getUserId());
+                dto.setUsername(owner != null ? owner.getUsername() : "Unknown");
                 dto.setCreatedAt(job.getCreatedAt());
+                dto.setUpdatedAt(job.getUpdatedAt());
                 return dto;
             }).collect(Collectors.toList());
             return ApiResponse.success(responseDTOs, "Jobs retrieved successfully");
@@ -104,9 +126,15 @@ public class JobService {
             dto.setDescription(job.getDescription());
             dto.setSalary(job.getSalary());
             dto.setCategory(job.getCategory());
-            dto.setCreatedAt(job.getCreatedAt());
-            dto.setOwnerUsername(owner.getUsername());
+            dto.setLocation(job.getLocation());
+            dto.setContactNo(job.getContactNo());
+            dto.setJobType(job.getJobType());
+            dto.setOpen(job.isOpen());
+            dto.setUserId(job.getUserId());
+            dto.setUsername(owner.getUsername());
             dto.setOwnerPhoneNumber(owner.getPhoneNumber());
+            dto.setCreatedAt(job.getCreatedAt());
+            dto.setUpdatedAt(job.getUpdatedAt());
 
             return ApiResponse.success(dto, "Job details retrieved successfully");
         } catch (ResponseStatusException e) {
@@ -129,7 +157,7 @@ public class JobService {
             job.setUpdatedAt(LocalDateTime.now());
             jobRepository.save(job);
 
-            return ApiResponse.success(null, "Job soft deleted successfully");
+            return ApiResponse.success(null, "Job deleted successfully");
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "JOB_NOT_FOUND");
         } catch (Exception e) {
@@ -137,46 +165,67 @@ public class JobService {
         }
     }
 
-    public ApiResponse<Void> updateJobAvailability(Long jobId, Long userId, boolean isOpen) {
+    // Close job (set isOpen = false)
+    public ApiResponse<Void> closeJob(Long jobId, Long userId) {
         try {
             Job job = jobRepository.findByIdAndDeletedFalse(jobId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job not found with id: " + jobId));
 
             if (!job.getUserId().equals(userId)) {
-                return ApiResponse.error("You are not authorized to update this job", "UNAUTHORIZED");
+                return ApiResponse.error("You are not authorized to close this job", "UNAUTHORIZED");
             }
 
-            job.setOpen(isOpen);
+            job.setOpen(false);
             job.setUpdatedAt(LocalDateTime.now());
             jobRepository.save(job);
 
-            return ApiResponse.success(null, isOpen ? "Job marked as open" : "Job marked as closed");
+            return ApiResponse.success(null, "Job closed successfully");
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "JOB_NOT_FOUND");
         } catch (Exception e) {
-            return ApiResponse.error("An error occurred while updating job availability", "INTERNAL_SERVER_ERROR");
+            return ApiResponse.error("An error occurred while closing the job", "INTERNAL_SERVER_ERROR");
         }
     }
 
-    public ApiResponse<List<JobResponseDTO>> getMyJobs(Long userId) {
+    // Replace your existing getMyJobs method with this generic method in JobService.java
+
+    /**
+     * Get jobs by any user ID (generic method)
+     */
+    public ApiResponse<List<JobResponseDTO>> getUserJobs(Long userId) {
         try {
-            List<Job> jobs = jobRepository.findAllByUserIdOrderByCreatedAtDesc(userId);
-            if (jobs.isEmpty()) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No jobs found for user id: " + userId);
+            // Check if user exists
+            User user = userRepository.findById(userId).orElse(null);
+            if (user == null) {
+                return ApiResponse.error("User not found with id: " + userId, "USER_NOT_FOUND");
             }
+
+            List<Job> jobs = jobRepository.findAllByUserIdOrderByCreatedAtDesc(userId);
+
+            // If no jobs found, return empty list instead of error
+            if (jobs.isEmpty()) {
+                return ApiResponse.success(new ArrayList<>(), "No jobs found for user");
+            }
+
             List<JobResponseDTO> responseDTOs = jobs.stream().map(job -> {
                 JobResponseDTO dto = new JobResponseDTO();
                 dto.setId(job.getId());
                 dto.setTitle(job.getTitle());
                 dto.setDescription(job.getDescription());
                 dto.setSalary(job.getSalary());
-
+                dto.setCategory(job.getCategory());
+                dto.setLocation(job.getLocation());
+                dto.setContactNo(job.getContactNo());
+                dto.setJobType(job.getJobType());
+                dto.setOpen(job.isOpen());
+                dto.setUserId(job.getUserId());
+                dto.setUsername(user.getUsername());
                 dto.setCreatedAt(job.getCreatedAt());
+                dto.setUpdatedAt(job.getUpdatedAt());
                 return dto;
             }).collect(Collectors.toList());
-            return ApiResponse.success(responseDTOs, "Jobs retrieved successfully for user");
-        } catch (ResponseStatusException e) {
-            return ApiResponse.error(e.getReason(), "JOB_NOT_FOUND");
+
+            return ApiResponse.success(responseDTOs, "Jobs retrieved successfully for user: " + user.getUsername());
         } catch (Exception e) {
             return ApiResponse.error("An error occurred while retrieving user jobs", "INTERNAL_SERVER_ERROR");
         }

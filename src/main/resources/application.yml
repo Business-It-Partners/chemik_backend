@@ -24,6 +24,22 @@ server:
     session:
       timeout: 120  # 120 seconds
 
+
+
+
+# Application-specific configuration
+app:
+  base-url: http://192.168.18.12:8080  # Current development/testing URL
+  firebase-configuration-file: firebase-adminsdk.json
+
+
+huggingface:
+  api:
+    token: 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
+  model:
+    name: abishektiwari/Nepali-Bert-offensiveDetection
+
+
 #  mail:
 #    host: smtp.gmail.com
 #    port: 587
@@ -62,7 +78,7 @@ logging:
     append: true
 
 cors:
-  allowed-origins: "http://localhost:3000, https://dgclick.com"
+  allowed-origins: "http://localhost:5173, https://dgclick.com"
   allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
   allowed-headers: "*"
   allow-credentials: true

@@ -11,8 +11,13 @@ public class ProductDetailResponseDTO {
     private String description;
     private Double price;
     private String category;
+    private String location; // New field
+    private String ownerContact; // New field - product-specific contact
+    private String condition; // New field
+    private boolean isAvailable;
+    private Long userId; // Owner's user ID
+    private String username; // Owner's username
     private List<String> images;
     private LocalDateTime createdAt;
-    private String ownerUsername;
-    private String ownerPhoneNumber;
+    private LocalDateTime updatedAt;
 }

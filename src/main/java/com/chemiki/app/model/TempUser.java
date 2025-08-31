@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "temp_users")
+@Table(name = "temporary_users")
 public class TempUser {
 
     @Id
@@ -26,13 +26,28 @@ public class TempUser {
     private String phoneNumber;
 
     @Column
-    private String profilePhoto;
+    private String profilePhotoUrl;
 
     @Column
-    private String coverPhoto;
+    private String coverPhotoUrl;
 
     @Column(nullable = false)
     private boolean isInstitutionalUser;
+
+    @Column
+    private String dateOfBirth;
+
+    @Column
+    private String district;
+
+    @Column
+    private String palika;
+
+    @Column
+    private String ward;
+
+    @Column
+    private String institutionCategory;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

@@ -1,0 +1,249 @@
+2025-09-12T07:18:19.814+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 10924 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T07:18:19.826+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T07:18:19.982+05:45  INFO 10924 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T07:18:19.983+05:45  INFO 10924 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T07:18:23.367+05:45  INFO 10924 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T07:18:24.175+05:45  INFO 10924 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 770 ms. Found 11 JPA repository interfaces.
+2025-09-12T07:18:26.493+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T07:18:26.534+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T07:18:26.535+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T07:18:26.640+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T07:18:26.641+05:45  INFO 10924 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6657 ms
+2025-09-12T07:18:26.738+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T07:18:30.641+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54a9407b
+2025-09-12T07:18:30.644+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T07:18:30.668+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T07:18:30.952+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T07:18:31.120+05:45  INFO 10924 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T07:18:31.227+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T07:18:32.097+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T07:18:33.029+05:45  WARN 10924 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T07:18:36.571+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T07:18:43.845+05:45  INFO 10924 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T07:18:45.255+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T07:18:45.345+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T07:18:45.743+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T07:18:46.339+05:45  INFO 10924 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T07:18:46.411+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T07:18:49.323+05:45  WARN 10924 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T07:18:51.091+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T07:18:51.216+05:45  INFO 10924 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T07:18:51.238+05:45  INFO 10924 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 32.906 seconds (process running for 35.081)
+2025-09-12T07:18:59.019+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-12T07:18:59.020+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-12T07:18:59.023+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-09-12T07:19:09.699+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-8] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-12T07:20:43.655+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-6] com.chemiki.app.service.FCMService       : Broadcast notification sent for ALERT post. Message ID: projects/pushnotification-79368/messages/5803799308619492760
+2025-09-12T07:22:14.909+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-1] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-12T07:22:15.310+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-1] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-12T07:22:15.311+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-1] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-12T07:24:43.180+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Invalid post type: GENERAL
+2025-09-12T07:27:55.084+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Invalid post type: GENERAL
+2025-09-12T07:30:08.007+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Invalid post type: GENERAL
+2025-09-12T07:32:25.129+05:45 ERROR 10924 --- [Chemiki] [http-nio-8080-exec-1] com.chemiki.app.service.FCMService       : Invalid post type: GENERAL
+2025-09-12T07:37:37.835+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3c4a7fc2 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T07:37:42.843+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3f70f356 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T07:42:58.400+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-6] com.chemiki.app.service.FCMService       : Broadcast notification sent for NOTICE post. Message ID: projects/pushnotification-79368/messages/4397286172618591359
+2025-09-12T07:44:37.758+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@9ff55ed (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T07:45:25.349+05:45  INFO 10924 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Broadcast notification sent for NOTICE post. Message ID: projects/pushnotification-79368/messages/1755666815074370150
+2025-09-12T07:50:37.098+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@49d50667 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T09:41:35.793+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1ffdb411 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T09:41:40.802+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@23ed61cc (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T09:48:05.194+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@27641a05 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T09:48:10.199+05:45  WARN 10924 --- [Chemiki] [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@61ac9907 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2025-09-12T17:09:40.173+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 17005 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T17:09:40.177+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T17:09:40.238+05:45  INFO 17005 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T17:09:40.238+05:45  INFO 17005 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T17:09:42.011+05:45  INFO 17005 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T17:09:42.335+05:45  INFO 17005 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 302 ms. Found 11 JPA repository interfaces.
+2025-09-12T17:09:43.830+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T17:09:43.850+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T17:09:43.851+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T17:09:43.913+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T17:09:43.913+05:45  INFO 17005 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3675 ms
+2025-09-12T17:09:43.970+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T17:09:47.390+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@702e399f
+2025-09-12T17:09:47.392+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T17:09:47.408+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T17:09:47.589+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T17:09:47.689+05:45  INFO 17005 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T17:09:47.735+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T17:09:48.109+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T17:09:48.909+05:45  WARN 17005 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T17:09:50.847+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T17:09:58.144+05:45  INFO 17005 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T17:09:58.673+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T17:09:58.686+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T17:09:58.784+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T17:09:59.057+05:45  INFO 17005 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T17:09:59.144+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T17:10:00.583+05:45  WARN 17005 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T17:10:01.857+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T17:10:01.950+05:45  INFO 17005 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T17:10:01.966+05:45  INFO 17005 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 22.515 seconds (process running for 23.615)
+2025-09-12T17:10:16.677+05:45  INFO 17005 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-12T17:10:16.677+05:45  INFO 17005 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-12T17:10:16.679+05:45  INFO 17005 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-12T17:15:34.285+05:45  WARN 17005 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@754d0d20 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T17:15:37.440+05:45  WARN 17005 --- [Chemiki] [http-nio-8080-exec-7] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-12T17:15:56.887+05:45  INFO 17005 --- [Chemiki] [http-nio-8080-exec-9] c.c.app.service.DeviceTokenService       : Transferring FCM token from user 2 to user 4
+2025-09-12T17:41:37.490+05:45  WARN 17005 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5735656a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T17:41:42.497+05:45  WARN 17005 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1492aa10 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T17:41:46.063+05:45  INFO 17005 --- [Chemiki] [http-nio-8080-exec-7] c.c.app.service.DeviceTokenService       : Created new device token for user: 2
+2025-09-12T17:56:31.126+05:45  INFO 17005 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T17:56:31.143+05:45  INFO 17005 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-12T17:56:31.147+05:45  INFO 17005 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-12T17:56:38.379+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 45083 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T17:56:38.382+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T17:56:38.454+05:45  INFO 45083 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T17:56:38.454+05:45  INFO 45083 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T17:56:40.337+05:45  INFO 45083 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T17:56:40.698+05:45  INFO 45083 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 329 ms. Found 11 JPA repository interfaces.
+2025-09-12T17:56:42.193+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T17:56:42.210+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T17:56:42.211+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T17:56:42.271+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T17:56:42.272+05:45  INFO 45083 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3816 ms
+2025-09-12T17:56:42.333+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T17:56:45.674+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@306b6b37
+2025-09-12T17:56:45.677+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T17:56:45.692+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T17:56:45.826+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T17:56:45.895+05:45  INFO 45083 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T17:56:45.940+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T17:56:46.271+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T17:56:47.159+05:45  WARN 45083 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T17:56:49.253+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T17:56:56.221+05:45  INFO 45083 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T17:56:56.631+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T17:56:56.640+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T17:56:56.721+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T17:56:56.915+05:45  INFO 45083 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T17:56:56.961+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T17:56:58.297+05:45  WARN 45083 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T17:56:59.438+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T17:56:59.517+05:45  INFO 45083 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T17:56:59.528+05:45  INFO 45083 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 21.997 seconds (process running for 23.005)
+2025-09-12T17:57:26.531+05:45  INFO 45083 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-12T17:57:26.532+05:45  INFO 45083 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-12T17:57:26.534+05:45  INFO 45083 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-12T17:58:01.831+05:45  INFO 45083 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T17:58:01.835+05:45  INFO 45083 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-12T17:58:01.837+05:45  INFO 45083 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-12T17:58:07.169+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 46105 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T17:58:07.172+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T17:58:07.234+05:45  INFO 46105 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T17:58:07.234+05:45  INFO 46105 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T17:58:08.540+05:45  INFO 46105 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T17:58:08.705+05:45  INFO 46105 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 156 ms. Found 11 JPA repository interfaces.
+2025-09-12T17:58:09.622+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T17:58:09.638+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T17:58:09.638+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T17:58:09.689+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T17:58:09.689+05:45  INFO 46105 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2454 ms
+2025-09-12T17:58:09.736+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T17:58:13.080+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@492d6362
+2025-09-12T17:58:13.082+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T17:58:13.099+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T17:58:13.197+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T17:58:13.232+05:45  INFO 46105 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T17:58:13.257+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T17:58:13.506+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T17:58:13.915+05:45  WARN 46105 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T17:58:15.568+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T17:58:22.434+05:45  INFO 46105 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T17:58:22.778+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T17:58:22.782+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T17:58:22.856+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T17:58:23.038+05:45  INFO 46105 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T17:58:23.094+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T17:58:24.906+05:45  WARN 46105 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T17:58:25.999+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T17:58:26.071+05:45  INFO 46105 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T17:58:26.083+05:45  INFO 46105 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 19.596 seconds (process running for 20.858)
+2025-09-12T17:58:48.006+05:45  INFO 46105 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-12T17:58:48.006+05:45  INFO 46105 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-12T17:58:48.008+05:45  INFO 46105 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-12T18:04:07.127+05:45  INFO 46105 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T18:04:07.131+05:45  INFO 46105 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-12T18:04:07.133+05:45  INFO 46105 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-12T18:04:11.939+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 49835 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T18:04:11.942+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T18:04:12.000+05:45  INFO 49835 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T18:04:12.000+05:45  INFO 49835 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T18:04:13.393+05:45  INFO 49835 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T18:04:13.638+05:45  INFO 49835 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 234 ms. Found 11 JPA repository interfaces.
+2025-09-12T18:04:15.319+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T18:04:15.346+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T18:04:15.347+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T18:04:15.404+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T18:04:15.404+05:45  INFO 49835 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3403 ms
+2025-09-12T18:04:15.449+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T18:04:19.522+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5c084ebb
+2025-09-12T18:04:19.524+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T18:04:19.536+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T18:04:19.638+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T18:04:19.673+05:45  INFO 49835 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T18:04:19.696+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T18:04:19.921+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T18:04:20.312+05:45  WARN 49835 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T18:04:22.031+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T18:04:29.224+05:45  INFO 49835 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T18:04:29.553+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T18:04:29.558+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T18:04:29.609+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T18:04:29.750+05:45  INFO 49835 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T18:04:29.787+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T18:04:31.193+05:45  WARN 49835 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T18:04:32.197+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T18:04:32.272+05:45  INFO 49835 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T18:04:32.288+05:45  INFO 49835 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 21.082 seconds (process running for 21.912)
+2025-09-12T18:13:06.925+05:45  INFO 49835 --- [Chemiki] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-12T18:13:06.926+05:45  INFO 49835 --- [Chemiki] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-12T18:13:06.928+05:45  INFO 49835 --- [Chemiki] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-12T18:13:12.109+05:45  WARN 49835 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5c084ebb (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T18:13:17.113+05:45  WARN 49835 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4df59d1f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-12T18:13:33.562+05:45  INFO 49835 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T18:13:33.566+05:45  INFO 49835 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-12T18:13:33.569+05:45  INFO 49835 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-12T18:13:38.967+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 55510 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-12T18:13:38.970+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-12T18:13:39.035+05:45  INFO 55510 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-12T18:13:39.036+05:45  INFO 55510 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-12T18:13:40.365+05:45  INFO 55510 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-12T18:13:40.593+05:45  INFO 55510 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 213 ms. Found 11 JPA repository interfaces.
+2025-09-12T18:13:41.847+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-12T18:13:41.868+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-12T18:13:41.869+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-12T18:13:41.958+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-12T18:13:41.959+05:45  INFO 55510 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2922 ms
+2025-09-12T18:13:42.032+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-12T18:13:45.824+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@15119f80
+2025-09-12T18:13:45.828+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-12T18:13:45.842+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-12T18:13:45.970+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-12T18:13:46.017+05:45  INFO 55510 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-12T18:13:46.058+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-12T18:13:46.328+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-12T18:13:47.283+05:45  WARN 55510 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-12T18:13:49.140+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-12T18:13:56.722+05:45  INFO 55510 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T18:13:57.186+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-12T18:13:57.192+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-12T18:13:57.255+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-12T18:13:57.488+05:45  INFO 55510 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-12T18:13:57.533+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-12T18:13:58.968+05:45  WARN 55510 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-12T18:14:00.034+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-12T18:14:00.112+05:45  INFO 55510 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-12T18:14:00.127+05:45  INFO 55510 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 21.858 seconds (process running for 22.764)
+2025-09-12T21:12:20.513+05:45  INFO 55510 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-12T21:12:20.520+05:45  INFO 55510 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-12T21:12:21.154+05:45  INFO 55510 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

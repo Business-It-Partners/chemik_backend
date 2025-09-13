@@ -16,6 +16,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class LoginService {
@@ -27,35 +29,80 @@ public class LoginService {
     public ApiResponse<LoginResponseDTO> login(LoginRequestDTO request) {
         try {
             String phoneNumber = request.getPhoneNumber();
+            String email = request.getEmail();
             String password = request.getPassword();
 
-            // Check if user exists
-            User user = userRepository.findByPhoneNumber(phoneNumber)
-                    .orElseThrow(() ->
-                            new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
+            // Determine what identifier was provided
+            boolean hasPhone = phoneNumber != null && !phoneNumber.trim().isEmpty();
+            boolean hasEmail = email != null && !email.trim().isEmpty();
 
-            // Authenticate
+            if (!hasPhone && !hasEmail) {
+                return ApiResponse.error("Either phone number or email is required", "INVALID_INPUT");
+            }
+
+            if (hasPhone && hasEmail) {
+                return ApiResponse.error("Please provide either phone number or email, not both", "INVALID_INPUT");
+            }
+
+            // Find user based on provided identifier
+            User user = null;
+            String loginIdentifier = null;
+
+            if (hasPhone) {
+                user = userRepository.findByPhoneNumber(phoneNumber).orElse(null);
+                loginIdentifier = phoneNumber;
+
+                if (user != null && user.isInstitutionalUser()) {
+                    return ApiResponse.error("Institutional users should login with email address", "INVALID_LOGIN_METHOD");
+                }
+            } else {
+                // Find user by email
+                Optional<User> userOptional = userRepository.findAll().stream()
+                        .filter(u -> email.equals(u.getEmail()))
+                        .findFirst();
+                user = userOptional.orElse(null);
+                loginIdentifier = email;
+
+                if (user != null && !user.isInstitutionalUser()) {
+                    return ApiResponse.error("Login with phone number", "INVALID_LOGIN_METHOD");
+                }
+            }
+
+            if (user == null) {
+                String errorMessage = hasPhone ?
+                        "No account found with this phone number" :
+                        "No account found with this email address";
+                return ApiResponse.error(errorMessage, "USER_NOT_FOUND");
+            }
+
+            // Authenticate using phone number (Spring Security expects phone as username)
+            // Even for email logins, we authenticate using the phone number from the user record
             try {
                 Authentication authentication = authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(phoneNumber, password)
+                        new UsernamePasswordAuthenticationToken(user.getPhoneNumber(), password)
                 );
 
-                // Generate tokens (both are JWTs, no database storage)
+                // Generate tokens
                 String accessToken = jwtTokenProvider.generateAccessToken(authentication);
-                String refreshToken = jwtTokenProvider.generateRefreshToken(phoneNumber);
+                String refreshToken = jwtTokenProvider.generateRefreshToken(user.getPhoneNumber());
 
                 LoginResponseDTO responseDTO = LoginResponseDTO.builder()
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();
 
+                String userType = user.isInstitutionalUser() ? "Institutional" : "Individual";
+                String loginMethod = hasPhone ? "phone number" : "email";
+                System.out.println("✅ Login successful - " + userType + " user via " + loginMethod + ": " + loginIdentifier);
+
                 return ApiResponse.success(responseDTO, "Login successful");
+
             } catch (AuthenticationException e) {
-                return ApiResponse.error(e.getMessage(), "AUTHENTICATION_FAILED");
+                return ApiResponse.error("Invalid password", "AUTHENTICATION_FAILED");
             }
-        } catch (ResponseStatusException e) {
-            return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
+
         } catch (Exception e) {
+            e.printStackTrace();
             return ApiResponse.error("An error occurred during login", "INTERNAL_SERVER_ERROR");
         }
     }
@@ -74,9 +121,18 @@ public class LoginService {
                         .orElseThrow(() ->
                                 new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this user ID"));
             } else {
-                user = userRepository.findByPhoneNumber(phoneNumber)
-                        .orElseThrow(() ->
-                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
+                // Check if phoneNumber contains '@' to determine if it's an email
+                if (phoneNumber.contains("@")) {
+                    // Treat as email
+                    user = userRepository.findByEmail(phoneNumber)
+                            .orElseThrow(() ->
+                                    new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this email address"));
+                } else {
+                    // Treat as phone number
+                    user = userRepository.findByPhoneNumber(phoneNumber)
+                            .orElseThrow(() ->
+                                    new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
+                }
             }
 
             // Map User to UserDetailResponseDTO
@@ -95,7 +151,8 @@ public class LoginService {
                     user.getInstitutionCategory(),
                     user.isVerified(),
                     user.getCreatedAt(),
-                    user.getUpdatedAt()
+                    user.getUpdatedAt(),
+                    user.getWebsite()
             );
 
             return ApiResponse.success(responseDTO, "User details retrieved successfully");

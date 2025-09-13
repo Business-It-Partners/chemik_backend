@@ -61,6 +61,7 @@ public class MarketplaceController {
             return ResponseEntity.ok(response);
         } else {
             String errorCode = response.getErrorCode();
+            System.out.println("the error code is " + HttpStatus.NOT_FOUND);
             HttpStatus status = errorCode.equals("PRODUCT_NOT_FOUND") ? HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
             return ResponseEntity.status(status).body(response);
         }
@@ -97,8 +98,8 @@ public class MarketplaceController {
         }
     }
 
-    // Mark product as sold (set availability to false) - now returns product details
-    @PatchMapping("/products/{productId}/mark-sold")
+    // Mark product as sold (set availability to false) - Changed to PUT
+    @PutMapping("/products/{productId}/mark-sold")
     public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> markProductAsSold(
             @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {
@@ -114,8 +115,8 @@ public class MarketplaceController {
         }
     }
 
-    // Mark product as available (set availability to true) - now returns product details
-    @PatchMapping("/products/{productId}/mark-available")
+    // Mark product as available (set availability to true) - Changed to PUT
+    @PutMapping("/products/{productId}/mark-available")
     public ResponseEntity<ApiResponse<ProductDetailResponseDTO>> markProductAsAvailable(
             @PathVariable Long productId,
             @AuthenticationPrincipal UserDetails userDetails) {

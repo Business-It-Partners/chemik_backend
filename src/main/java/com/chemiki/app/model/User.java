@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -37,7 +37,7 @@ public class User {
     private String coverPhotoUrl;
 
     @Column(nullable = false)
-    private boolean isInstitutionalUser;
+    private boolean institutionalUser;
 
     @Column
     private String dateOfBirth;

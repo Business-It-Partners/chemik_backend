@@ -1,0 +1,831 @@
+2025-09-11T09:34:51.480+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 29529 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-11T09:34:51.490+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-11T09:34:51.627+05:45  INFO 29529 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-11T09:34:51.628+05:45  INFO 29529 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-11T09:34:54.027+05:45  INFO 29529 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-11T09:34:54.415+05:45  INFO 29529 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 368 ms. Found 11 JPA repository interfaces.
+2025-09-11T09:34:56.310+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-11T09:34:56.340+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-11T09:34:56.341+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-11T09:34:56.438+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-11T09:34:56.439+05:45  INFO 29529 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4809 ms
+2025-09-11T09:34:56.531+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-11T09:35:00.720+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@24b9ff39
+2025-09-11T09:35:00.723+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-11T09:35:00.746+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-11T09:35:01.031+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-11T09:35:01.163+05:45  INFO 29529 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-11T09:35:01.241+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-11T09:35:01.832+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-11T09:35:02.707+05:45  WARN 29529 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-11T09:35:06.049+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-11T09:35:13.726+05:45  INFO 29529 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T09:35:14.623+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-11T09:35:14.641+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-11T09:35:14.779+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-11T09:35:15.159+05:45  INFO 29529 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-11T09:35:15.245+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-11T09:35:17.834+05:45  WARN 29529 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-11T09:35:19.760+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-11T09:35:19.904+05:45  INFO 29529 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-11T09:35:19.927+05:45  INFO 29529 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 29.844 seconds (process running for 31.675)
+2025-09-11T10:33:51.087+05:45  INFO 29529 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T10:33:51.096+05:45  INFO 29529 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-11T10:33:51.100+05:45  INFO 29529 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-11T10:49:02.948+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 10488 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-11T10:49:02.953+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-11T10:49:03.104+05:45  INFO 10488 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-11T10:49:03.105+05:45  INFO 10488 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-11T10:49:05.287+05:45  INFO 10488 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-11T10:49:05.629+05:45  INFO 10488 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 325 ms. Found 11 JPA repository interfaces.
+2025-09-11T10:49:07.721+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-11T10:49:07.750+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-11T10:49:07.751+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-11T10:49:07.856+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-11T10:49:07.857+05:45  INFO 10488 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4750 ms
+2025-09-11T10:49:07.968+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-11T10:49:18.781+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@79477609
+2025-09-11T10:49:18.784+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-11T10:49:18.807+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-11T10:49:19.086+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-11T10:49:19.296+05:45  INFO 10488 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-11T10:49:19.386+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-11T10:49:20.089+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-11T10:49:25.176+05:45  WARN 10488 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@79477609 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T10:49:29.012+05:45  WARN 10488 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-11T10:49:34.137+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-11T10:49:40.853+05:45  INFO 10488 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T10:49:42.205+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-11T10:49:42.230+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-11T10:49:42.420+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-11T10:49:42.887+05:45  INFO 10488 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-11T10:49:42.997+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-11T10:49:47.607+05:45  WARN 10488 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-11T10:49:50.369+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-11T10:49:50.568+05:45  INFO 10488 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-11T10:49:50.611+05:45  INFO 10488 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 48.95 seconds (process running for 50.684)
+2025-09-11T11:42:57.478+05:45  INFO 10488 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-11T11:42:57.479+05:45  INFO 10488 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-11T11:42:57.486+05:45  INFO 10488 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2025-09-11T11:58:49.318+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@f56e38b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T11:58:54.322+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4803122e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T11:59:05.302+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-11T12:16:31.504+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@31e0d06d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:16:36.510+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4257d21a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:35:14.010+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@79001587 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:35:19.013+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2a9c476c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:42:39.270+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5ae86e1b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:42:44.276+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@19ab6dd9 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:50:45.079+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@62682beb (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:50:50.083+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@35a5008a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:51:19.505+05:45  WARN 10488 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4da5c186 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T12:52:27.251+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 57531 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-11T12:52:27.257+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-11T12:52:27.407+05:45  INFO 57531 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-11T12:52:27.407+05:45  INFO 57531 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-11T12:52:30.114+05:45  INFO 57531 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-11T12:52:30.515+05:45  INFO 57531 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 378 ms. Found 11 JPA repository interfaces.
+2025-09-11T12:52:32.521+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-11T12:52:32.560+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-11T12:52:32.561+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-11T12:52:32.687+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-11T12:52:32.688+05:45  INFO 57531 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5279 ms
+2025-09-11T12:52:32.811+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-11T12:53:11.081+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44bcd921
+2025-09-11T12:53:11.085+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-11T12:53:11.110+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-11T12:53:11.429+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-11T12:53:11.577+05:45  INFO 57531 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-11T12:53:11.678+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-11T12:53:12.343+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-11T12:53:15.928+05:45  WARN 57531 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-11T12:53:21.631+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-11T12:53:58.910+05:45  INFO 57531 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T12:54:00.089+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-11T12:54:00.108+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-11T12:54:00.250+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-11T12:54:00.617+05:45  INFO 57531 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-11T12:54:00.721+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-11T12:54:03.300+05:45  WARN 57531 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-11T12:54:05.336+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-11T12:54:05.491+05:45  INFO 57531 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-11T12:54:05.516+05:45  INFO 57531 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 99.767 seconds (process running for 102.052)
+2025-09-11T12:55:14.002+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-11T12:55:14.006+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-11T12:55:14.012+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-09-11T12:55:25.676+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-4] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-11T13:01:18.631+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@44bcd921 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:01:23.638+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@cdf4de7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:10:53.741+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7e29b6da (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:10:53.758+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@40b080d7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:16:10.328+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2cadd1a2 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:50:07.030+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@214bb769 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T13:59:05.946+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1022f53b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:05:53.817+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@690e1bc (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:05:58.822+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4d8755f7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:24:39.882+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7f894863 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:24:44.887+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@546cbf8 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:33:08.310+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@68a1b346 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:33:13.316+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@77067205 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:39:23.490+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4b52c24e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:39:28.493+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@335db352 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:45:03.799+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2c209ad8 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:45:08.804+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1ffca34b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:51:05.375+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3dea8231 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:51:06.451+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4a37f49f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:58:53.909+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6db9ff6f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T14:58:58.914+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5bf1b1ea (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:05:51.913+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1ec34878 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:05:56.917+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@17c5c310 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:21:00.262+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1e648324 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:21:05.268+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6274b70b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:27:18.991+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@44f85e63 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:27:23.994+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@28ba1655 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T15:52:56.256+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@74d5e3e5 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T16:08:36.418+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5114dc86 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T16:08:41.422+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7c7f3ed8 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T16:42:53.566+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T16:42:53.874+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T16:42:53.875+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T16:43:28.447+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T16:43:28.754+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T16:43:28.754+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:08:35.546+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@62a227f7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T17:08:35.566+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-10] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@8122dc (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T17:10:11.987+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:10:12.633+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:10:22.656+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:10:23.065+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:11:18.588+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:11:18.915+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T17:18:14.625+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2ef1b0a7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T17:18:19.631+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@31e8bbaa (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T17:21:52.432+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T17:21:52.842+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T17:21:52.843+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-10] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:22:07.792+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T17:22:08.202+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T17:22:08.202+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:23:22.955+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T17:23:23.364+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T17:23:23.364+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:24:09.344+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T17:24:09.716+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T17:24:09.717+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:26:05.528+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T17:26:05.876+05:45 ERROR 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T17:26:05.876+05:45  INFO 57531 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 1/3
+2025-09-11T17:43:40.512+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@16ae94d8 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T17:50:28.068+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2b03f67e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T18:01:11.962+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T18:01:12.308+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T18:01:49.540+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T18:01:49.950+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "undefined"]
+2025-09-11T18:31:40.991+05:45  WARN 57531 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6602b95 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T18:37:34.049+05:45  INFO 57531 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T18:37:34.060+05:45  INFO 57531 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-11T18:37:34.066+05:45  INFO 57531 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-11T18:37:40.573+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 199270 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-11T18:37:40.579+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-11T18:37:40.707+05:45  INFO 199270 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-11T18:37:40.708+05:45  INFO 199270 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-11T18:37:43.668+05:45  INFO 199270 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-11T18:37:44.027+05:45  INFO 199270 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 341 ms. Found 11 JPA repository interfaces.
+2025-09-11T18:37:45.969+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-11T18:37:46.010+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-11T18:37:46.011+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-11T18:37:46.142+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-11T18:37:46.143+05:45  INFO 199270 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5434 ms
+2025-09-11T18:37:46.275+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-11T18:37:49.925+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5758a771
+2025-09-11T18:37:49.929+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-11T18:37:49.951+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-11T18:37:50.192+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-11T18:37:50.305+05:45  INFO 199270 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-11T18:37:50.392+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-11T18:37:50.940+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-11T18:37:51.778+05:45  WARN 199270 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-11T18:37:54.864+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-11T18:38:01.796+05:45  INFO 199270 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T18:38:02.696+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-11T18:38:02.713+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-11T18:38:02.872+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-11T18:38:03.358+05:45  INFO 199270 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-11T18:38:03.457+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-11T18:38:06.063+05:45  WARN 199270 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-11T18:38:08.180+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-11T18:38:08.338+05:45  INFO 199270 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-11T18:38:08.365+05:45  INFO 199270 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 29.742 seconds (process running for 31.712)
+2025-09-11T18:39:44.375+05:45  INFO 199270 --- [Chemiki] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-11T18:39:44.376+05:45  INFO 199270 --- [Chemiki] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-11T18:39:44.381+05:45  INFO 199270 --- [Chemiki] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-09-11T18:49:14.801+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-8] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-11T18:55:29.245+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@da4af51 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T18:55:34.250+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1bb0768a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:04:37.170+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5ad64cca (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:04:37.758+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@726c2255 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:08:10.388+05:45  INFO 199270 --- [Chemiki] [http-nio-8080-exec-7] c.c.app.service.DeviceTokenService       : Transferring FCM token from user 3 to user 2
+2025-09-11T19:23:57.624+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@24210ca7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:24:02.630+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@10b5b4db (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:39:32.318+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@19353d2b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T19:39:37.322+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1ed983da (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T20:07:17.648+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@27e0f5f1 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T20:13:01.348+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@61cf83b6 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T20:13:01.350+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7159c19b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T20:18:06.463+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] ]
+2025-09-11T20:18:21.003+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T20:18:27.970+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T20:57:42.689+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] ]
+2025-09-11T20:58:03.681+05:45  WARN 199270 --- [Chemiki] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T20:58:09.676+05:45  INFO 199270 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T20:58:09.686+05:45  INFO 199270 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-11T20:58:09.689+05:45  INFO 199270 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-11T20:58:15.920+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Starting ChemikiApplication using Java 20 with PID 254613 (/home/master-x/abishek java/chemiki/target/classes started by master-x in /home/master-x/abishek java/chemiki)
+2025-09-11T20:58:15.926+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-11T20:58:16.035+05:45  INFO 254613 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-11T20:58:16.035+05:45  INFO 254613 --- [Chemiki] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-11T20:58:18.819+05:45  INFO 254613 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-11T20:58:19.223+05:45  INFO 254613 --- [Chemiki] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 381 ms. Found 11 JPA repository interfaces.
+2025-09-11T20:58:21.199+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-11T20:58:21.235+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-11T20:58:21.236+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-09-11T20:58:21.331+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-11T20:58:21.333+05:45  INFO 254613 --- [Chemiki] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5296 ms
+2025-09-11T20:58:21.433+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-11T20:58:25.288+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@74cf6239
+2025-09-11T20:58:25.291+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-11T20:58:25.313+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dgclick.com/chimeki_developer'
+2025-09-11T20:58:25.604+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-11T20:58:25.728+05:45  INFO 254613 --- [Chemiki] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-11T20:58:25.817+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-11T20:58:26.567+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-11T20:58:28.600+05:45  WARN 254613 --- [Chemiki] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-11T20:58:31.557+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-11T20:58:48.738+05:45  INFO 254613 --- [Chemiki] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T20:58:49.737+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Initializing Firebase with config file: firebase-adminsdk.json
+2025-09-11T20:58:49.760+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Loading Firebase credentials from: file:/home/master-x/abishek%20java/chemiki/target/classes/firebase-adminsdk.json
+2025-09-11T20:58:49.947+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.config.FirebaseConfig    : Firebase initialized successfully. App name: [DEFAULT], Project ID: null
+2025-09-11T20:58:50.477+05:45  INFO 254613 --- [Chemiki] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name registrationService
+2025-09-11T20:58:50.553+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-11T20:58:52.722+05:45  WARN 254613 --- [Chemiki] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-11T20:58:54.588+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-11T20:58:54.763+05:45  INFO 254613 --- [Chemiki] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-11T20:58:54.794+05:45  INFO 254613 --- [Chemiki] [restartedMain] com.chemiki.app.ChemikiApplication       : Started ChemikiApplication in 40.212 seconds (process running for 42.024)
+2025-09-11T20:59:35.871+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-11T20:59:35.873+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-11T20:59:35.879+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-09-11T21:00:01.454+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] ]
+2025-09-11T21:00:58.072+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:01:37.328+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-09-11T21:01:58.118+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] ]
+2025-09-11T21:02:44.504+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:04:41.433+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:05:51.600+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-12] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:05:51.601+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-12] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=4)
+2025-09-11T21:05:51.614+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-12] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.springframework.dao.DataAccessResourceFailureException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=4)] [n/a]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:274) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy137.findByPhoneNumber(Unknown Source) ~[na:na]
+	at com.chemiki.app.service.RegistrationService.loadUserByUsername(RegistrationService.java:36) ~[classes/:na]
+	at com.chemiki.app.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:31) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=4)] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:51) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:129) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:156) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.connection(StatementPreparerImpl.java:54) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:153) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:183) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:155) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.lambda$list$0(JdbcSelectExecutor.java:85) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:231) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:167) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:265) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:145) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:67) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:204) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:211) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$2(ConcreteSqmSelectQueryPlan.java:139) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:382) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:302) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:526) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:423) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:555) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:418) ~[spring-orm-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy180.getSingleResult(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:152) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:140) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:169) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:148) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.13.jar:6.1.13]
+	... 69 common frames omitted
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=4)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:127) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:46) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:126) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 112 common frames omitted
+
+2025-09-11T21:06:00.504+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:06:00.504+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=2)
+2025-09-11T21:06:00.854+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:06:00.855+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=1)
+2025-09-11T21:06:01.784+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-11] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:06:01.785+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-11] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=2, active=2, idle=0, waiting=0)
+2025-09-11T21:06:50.405+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-5] c.c.app.service.DeviceTokenService       : Updated existing device token for same user: 2
+2025-09-11T21:10:14.718+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : No active tokens found for user 3
+2025-09-11T21:10:38.684+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:20:14.809+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:21:27.587+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:22:22.280+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails) with 2 errors: [Field error in object 'sendMessageRequestDTO' on field 'content': rejected value [null]; codes [NotBlank.sendMessageRequestDTO.content,NotBlank.content,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.content,content]; arguments []; default message [content]]; default message [Message content is required]] [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:30:16.200+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:30:16.653+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:30:16.653+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:31:10.164+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:31:10.164+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=3)
+2025-09-11T21:31:10.166+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-13] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2025-09-11T21:31:10.167+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-13] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=2)
+2025-09-11T21:31:10.168+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-13] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.springframework.dao.DataAccessResourceFailureException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=2)] [n/a]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:274) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy137.findByPhoneNumber(Unknown Source) ~[na:na]
+	at com.chemiki.app.service.RegistrationService.loadUserByUsername(RegistrationService.java:36) ~[classes/:na]
+	at com.chemiki.app.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:31) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=2)] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:51) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:129) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:156) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.connection(StatementPreparerImpl.java:54) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:153) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:183) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:155) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.lambda$list$0(JdbcSelectExecutor.java:85) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:231) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:167) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:265) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:145) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:67) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:204) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:211) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$2(ConcreteSqmSelectQueryPlan.java:139) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:382) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:302) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:526) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:423) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:555) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:418) ~[spring-orm-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy180.getSingleResult(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:152) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:140) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:169) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:148) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.13.jar:6.1.13]
+	... 69 common frames omitted
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=2)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:127) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:46) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:126) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 112 common frames omitted
+
+2025-09-11T21:31:10.166+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.springframework.dao.DataAccessResourceFailureException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=3)] [n/a]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:274) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy137.findByPhoneNumber(Unknown Source) ~[na:na]
+	at com.chemiki.app.service.RegistrationService.loadUserByUsername(RegistrationService.java:36) ~[classes/:na]
+	at com.chemiki.app.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:31) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1623) ~[na:na]
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=3)] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:51) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:129) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:156) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.connection(StatementPreparerImpl.java:54) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:153) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:183) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:155) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.lambda$list$0(JdbcSelectExecutor.java:85) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:231) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:167) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:265) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:145) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:67) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:204) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:211) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$2(ConcreteSqmSelectQueryPlan.java:139) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:382) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:302) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:526) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:423) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:555) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:418) ~[spring-orm-6.1.13.jar:6.1.13]
+	at jdk.proxy4/jdk.proxy4.$Proxy180.getSingleResult(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:152) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:140) ~[spring-data-jpa-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:169) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:148) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.3.4.jar:3.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.13.jar:6.1.13]
+	... 69 common frames omitted
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 20000ms (total=4, active=4, idle=0, waiting=3)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:127) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:46) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:126) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 112 common frames omitted
+
+2025-09-11T21:34:26.650+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1f03b23b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T21:36:46.980+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-12] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@756ee38b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T21:38:51.396+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : No active tokens found for user 3
+2025-09-11T21:39:01.918+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:39:02.565+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:39:04.166+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:40:46.979+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@78f25701 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T21:41:27.063+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:41:27.376+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:41:47.914+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:42:30.673+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-14] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.chemiki.app.dto.ApiResponse<com.chemiki.app.dto.responseDto.MessageResponseDTO>> com.chemiki.app.controller.MessageController.sendMessage(com.chemiki.app.dto.requestDto.SendMessageRequestDTO,org.springframework.security.core.userdetails.UserDetails): [Field error in object 'sendMessageRequestDTO' on field 'receiverId': rejected value [null]; codes [NotNull.sendMessageRequestDTO.receiverId,NotNull.receiverId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendMessageRequestDTO.receiverId,receiverId]; arguments []; default message [receiverId]]; default message [Receiver ID is required]] ]
+2025-09-11T21:44:53.358+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:44:53.766+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:44:58.312+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:47:39.461+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:47:39.869+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:47:44.986+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:49:54.257+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5c4486f2 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T21:50:07.356+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:50:07.733+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:50:16.722+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:53:32.345+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:53:32.758+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:53:38.076+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-3] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:54:24.879+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:54:25.192+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:54:32.964+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-7] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:55:18.740+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:55:19.088+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:55:21.876+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-5] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:56:05.438+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:56:05.847+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:56:05.847+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:56:57.049+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2e0dc83c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T21:57:25.414+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:57:25.741+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:57:25.742+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:58:40.128+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:58:40.447+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:58:40.447+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T21:59:56.441+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-12] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T21:59:56.765+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-12] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T21:59:56.765+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-12] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:03:07.480+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-14] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2b02a459 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T22:03:12.494+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-14] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@491d5ff8 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T22:03:24.488+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:03:24.796+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:03:24.797+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-14] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:04:07.344+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:04:07.753+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:04:07.753+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:05:40.741+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:05:41.078+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:05:43.906+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:06:27.635+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:06:27.942+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:06:33.698+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-4] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:09:13.006+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@36d4db60 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T22:12:27.271+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:12:27.679+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:12:31.159+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-8] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:14:46.220+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@d9f6deb (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T22:15:07.837+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:15:08.246+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:15:11.315+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:17:02.835+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:17:03.243+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:17:06.312+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:17:45.331+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:17:45.622+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:17:49.116+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:18:14.107+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:18:14.412+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:18:16.869+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:24:42.412+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@120da7c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T22:51:00.013+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:51:00.422+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:51:00.422+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T22:57:18.682+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T22:57:18.988+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T22:57:18.989+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-9] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T23:01:04.674+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token fhXS5KZySDCBpNUHa8aC: Requested entity was not found.
+2025-09-11T23:01:05.196+05:45 ERROR 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Failed to send notification to token eSPW5J3vT0ODT25ULXd2: Requested entity was not found.
+2025-09-11T23:01:05.196+05:45  INFO 254613 --- [Chemiki] [http-nio-8080-exec-2] com.chemiki.app.service.FCMService       : Notification sent to user 2. Success: 2/4
+2025-09-11T23:03:43.522+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7eb2ced7 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:09:25.116+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@46b55805 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:09:30.118+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@12d11620 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:15:40.824+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@65c18141 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:15:45.829+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@648c8fe4 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:22:20.402+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-12] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@557adeaf (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:22:25.406+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-12] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@76f8696b (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:28:08.845+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@557fdd5e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:28:13.850+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@74f27c48 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:45:30.484+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-14] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7e07f58e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:45:30.486+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@65e21d5a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:51:12.457+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2def02ef (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:51:17.459+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@70ad733a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:56:59.076+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@64cbe0b1 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:57:04.080+05:45  WARN 254613 --- [Chemiki] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@443305a0 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2025-09-11T23:58:37.270+05:45  INFO 254613 --- [Chemiki] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-11T23:58:37.279+05:45  INFO 254613 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-11T23:58:37.284+05:45  INFO 254613 --- [Chemiki] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

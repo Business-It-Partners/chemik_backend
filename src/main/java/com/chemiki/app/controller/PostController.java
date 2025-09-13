@@ -1,18 +1,18 @@
 package com.chemiki.app.controller;
 
+import com.chemiki.app.config.CustomUserDetails;
 import com.chemiki.app.dto.ApiResponse;
 import com.chemiki.app.dto.requestDto.CreatePostRequestDTO;
 import com.chemiki.app.dto.responseDto.PostResponseDTO;
 import com.chemiki.app.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -26,7 +26,7 @@ public class PostController {
     public ResponseEntity<ApiResponse<PostResponseDTO>> createPostWithImages(
             @Valid @ModelAttribute CreatePostRequestDTO request,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
+        Long userId = ((CustomUserDetails) userDetails).getUser().getId();
         ApiResponse<PostResponseDTO> response = postService.createPost(request, userId);
         return handleCreatePostResponse(response);
     }
@@ -36,7 +36,7 @@ public class PostController {
     public ResponseEntity<ApiResponse<PostResponseDTO>> createPostJson(
             @Valid @RequestBody CreatePostRequestDTO request,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
+        Long userId = ((CustomUserDetails) userDetails).getUser().getId();
         ApiResponse<PostResponseDTO> response = postService.createPost(request, userId);
         return handleCreatePostResponse(response);
     }
@@ -66,10 +66,12 @@ public class PostController {
 
     // Get general posts (all except NEWS and NOTICE) - For "General" tab
     @GetMapping("/general")
-    public ResponseEntity<ApiResponse<List<PostResponseDTO>>> getGeneralPosts(
+    public ResponseEntity<ApiResponse<Page<PostResponseDTO>>> getGeneralPosts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long currentUserId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<PostResponseDTO>> response = postService.getGeneralPosts(currentUserId);
+        Long currentUserId = ((CustomUserDetails) userDetails).getUser().getId();
+        ApiResponse<Page<PostResponseDTO>> response = postService.getGeneralPosts(currentUserId, page, size);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -77,20 +79,20 @@ public class PostController {
         }
     }
 
-    // Get news and notice posts (only from institutional users) - For "News & Notice" tab
+    // Get news and notice posts - For "News & Notice" tab
     @GetMapping("/news-notice")
-    public ResponseEntity<ApiResponse<List<PostResponseDTO>>> getNewsAndNoticePosts(
+    public ResponseEntity<ApiResponse<Page<PostResponseDTO>>> getNewsAndNoticePosts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long currentUserId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<PostResponseDTO>> response = postService.getNewsAndNoticePosts(currentUserId);
+        Long currentUserId = ((CustomUserDetails) userDetails).getUser().getId();
+        ApiResponse<Page<PostResponseDTO>> response = postService.getNewsAndNoticePosts(currentUserId, page, size);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
-    // Get single post by ID (also increments view count)
     @GetMapping("/{postId}")
     public ResponseEntity<ApiResponse<PostResponseDTO>> getPost(
             @PathVariable Long postId,
@@ -106,13 +108,14 @@ public class PostController {
             return ResponseEntity.status(status).body(response);
         }
     }
-
-    // Get current user's posts
+    // Get current user's posts (own profile view)
     @GetMapping("/my-posts")
-    public ResponseEntity<ApiResponse<List<PostResponseDTO>>> getMyPosts(
+    public ResponseEntity<ApiResponse<Page<PostResponseDTO>>> getMyPosts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<PostResponseDTO>> response = postService.getUserPosts(userId, userId);
+        Long userId = ((CustomUserDetails) userDetails).getUser().getId();
+        ApiResponse<Page<PostResponseDTO>> response = postService.getUserPosts(userId, userId, page, size);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -122,11 +125,13 @@ public class PostController {
 
     // Get specific user's posts (public profile view)
     @GetMapping("/user/{userId}")
-    public ResponseEntity<ApiResponse<List<PostResponseDTO>>> getUserPosts(
+    public ResponseEntity<ApiResponse<Page<PostResponseDTO>>> getUserPosts(
             @PathVariable Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long currentUserId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<List<PostResponseDTO>> response = postService.getUserPosts(userId, currentUserId);
+        Long currentUserId = ((CustomUserDetails) userDetails).getUser().getId();
+        ApiResponse<Page<PostResponseDTO>> response = postService.getUserPosts(userId, currentUserId, page, size);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
@@ -139,7 +144,7 @@ public class PostController {
     public ResponseEntity<ApiResponse<Void>> deletePost(
             @PathVariable Long postId,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
+        Long userId = ((CustomUserDetails) userDetails).getUser().getId();
         ApiResponse<Void> response = postService.deletePost(postId, userId);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
@@ -156,24 +161,9 @@ public class PostController {
     public ResponseEntity<ApiResponse<Void>> togglePostStatus(
             @PathVariable Long postId,
             @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        // You can implement this in PostService later
+        Long userId = ((CustomUserDetails) userDetails).getUser().getId();
         return ResponseEntity.ok(ApiResponse.success(null, "Toggle status functionality coming soon"));
     }
 
-
-
-    // DELETE ALL POSTS - For development/testing purposes only
-    @DeleteMapping("/delete-all")
-    public ResponseEntity<ApiResponse<String>> deleteAllPosts(
-            @AuthenticationPrincipal UserDetails userDetails) {
-        Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<String> response = postService.deleteAllPosts(userId);
-        if (response.isSuccess()) {
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
 
 }

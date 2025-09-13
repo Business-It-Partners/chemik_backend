@@ -92,12 +92,12 @@ public class JobController {
     }
 
     // Close job (set isOpen = false)
-    @PatchMapping("/job/{id}/close")
-    public ResponseEntity<ApiResponse<Void>> closeJob(
+    @PutMapping("/{id}/close")
+    public ResponseEntity<ApiResponse<JobDetailResponseDTO>> closeJob(
             @PathVariable Long id,
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
-        ApiResponse<Void> response = jobService.closeJob(id, userId);
+        ApiResponse<JobDetailResponseDTO> response = jobService.closeJob(id, userId);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {

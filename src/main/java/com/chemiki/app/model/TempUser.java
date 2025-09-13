@@ -32,7 +32,7 @@ public class TempUser {
     private String coverPhotoUrl;
 
     @Column(nullable = false)
-    private boolean isInstitutionalUser;
+    private boolean institutionalUser;
 
     @Column
     private String dateOfBirth;

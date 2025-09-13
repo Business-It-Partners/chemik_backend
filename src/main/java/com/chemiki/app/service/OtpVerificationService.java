@@ -32,30 +32,44 @@ public class OtpVerificationService {
             String phoneNumber = request.getPhoneNumber();
             String otpCode = request.getOtp();
 
-            if (token == null || token.isEmpty() ||
-                    phoneNumber == null || phoneNumber.isEmpty() ||
-                    otpCode == null || otpCode.isEmpty()) {
-                return ApiResponse.error("Token, phone number, and OTP code are required", "INVALID_INPUT");
+            if (token == null || token.isEmpty() || otpCode == null || otpCode.isEmpty()) {
+                return ApiResponse.error("Token and OTP code are required", "INVALID_INPUT");
             }
 
-            // Check if phone number already exists in User table
-            if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) {
-                return ApiResponse.error("Phone number " + phoneNumber + " is already registered", "PHONE_NUMBER_EXISTS");
-            }
+            // Find TempUser first to determine user type
+            TempUser tempUser = tempUserRepository.findByPhoneNumber(phoneNumber)
+                    .orElseThrow(() -> new ResourceNotFoundException("Temp user not found"));
 
-            // Find OTP
-            Otp otp = otpRepository.findByTokenAndPhoneNumberAndExpiresAtAfter(
-                            token, phoneNumber, LocalDateTime.now())
-                    .orElseThrow(() -> new ResourceNotFoundException("Invalid or expired OTP"));
+            boolean isInstitutional = tempUser.isInstitutionalUser();
+
+            // Find OTP based on user type
+            Otp otp;
+            if (isInstitutional) {
+                // For institutional users: verify using email
+                String email = tempUser.getEmail();
+                if (email == null || email.isEmpty()) {
+                    return ApiResponse.error("Email not found for institutional user", "EMAIL_NOT_FOUND");
+                }
+                otp = otpRepository.findByTokenAndEmailAndExpiresAtAfter(token, email, LocalDateTime.now())
+                        .orElseThrow(() -> new ResourceNotFoundException("Invalid or expired OTP"));
+            } else {
+                // For general users: verify using phone number
+                if (phoneNumber == null || phoneNumber.isEmpty()) {
+                    return ApiResponse.error("Phone number is required", "PHONE_NUMBER_REQUIRED");
+                }
+                otp = otpRepository.findByTokenAndPhoneNumberAndExpiresAtAfter(token, phoneNumber, LocalDateTime.now())
+                        .orElseThrow(() -> new ResourceNotFoundException("Invalid or expired OTP"));
+            }
 
             // Validate OTP code
             if (!otp.getOtp().equals(otpCode)) {
                 return ApiResponse.error("Invalid OTP code", "INVALID_OTP");
             }
 
-            // Find TempUser
-            TempUser tempUser = tempUserRepository.findByPhoneNumber(phoneNumber)
-                    .orElseThrow(() -> new ResourceNotFoundException("Temp user not found"));
+            // Check if phone number already exists in User table
+            if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) {
+                return ApiResponse.error("Phone number " + phoneNumber + " is already registered", "PHONE_NUMBER_EXISTS");
+            }
 
             // Create and save User
             User user = new User();
@@ -82,12 +96,14 @@ public class OtpVerificationService {
             tempUserRepository.delete(tempUser);
 
             OtpVerificationResponseDTO response = new OtpVerificationResponseDTO();
-            response.setMessage("Account registered successfully");
+            String userType = isInstitutional ? "Institutional" : "Individual";
+            response.setMessage(userType + " account registered successfully");
 
-            return ApiResponse.success(response, "Account registered successfully");
+            return ApiResponse.success(response, response.getMessage());
         } catch (ResourceNotFoundException e) {
             return ApiResponse.error(e.getMessage(), e.getMessage().contains("OTP") ? "INVALID_OTP" : "TEMP_USER_NOT_FOUND");
         } catch (Exception e) {
+            e.printStackTrace(); // For debugging
             return ApiResponse.error("An error occurred during OTP verification", "INTERNAL_SERVER_ERROR");
         }
     }

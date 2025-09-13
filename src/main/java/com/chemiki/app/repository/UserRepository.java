@@ -1,5 +1,3 @@
-// folder: com.chemiki.app.repository
-// purpose: Provides data access methods for User entity
 package com.chemiki.app.repository;
 
 import com.chemiki.app.model.User;
@@ -12,10 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByPhoneNumber(String phoneNumber); // Added custom query
-
-    // New method for institutional users
-    List<User> findByIsInstitutionalUserTrue();
+    Optional<User> findByEmail(String email); // Added custom query for email
+    List<User> findByInstitutionalUserTrue();
 }
-
-
-

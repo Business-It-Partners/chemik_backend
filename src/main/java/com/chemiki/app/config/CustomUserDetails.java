@@ -49,9 +49,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        // Fix for the "User is disabled" error
-        // Since users complete OTP verification to be created, they should be enabled
-        return true; // Always return true, handle verification separately in business logic
+          return true; // Always return true, handle verification separately in business logic
 
         // Alternative: return user.isVerified();
         // (use this if you want only verified users to login)

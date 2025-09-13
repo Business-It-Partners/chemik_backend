@@ -3,7 +3,6 @@ package com.chemiki.app.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -15,17 +14,23 @@ public class PasswordReset {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String token = UUID.randomUUID().toString();
+    private String token;
 
     @Column(nullable = false)
-    private String otp = "1111"; // Mocked OTP (same as your registration)
+    private String otp;
+
+    @Column(nullable = true)
+    private String phoneNumber; // For general users
+
+    @Column(nullable = true)
+    private String email; // For institutional users
 
     @Column(nullable = false)
-    private String phoneNumber;
+    private String deliveryMethod; // "phone" or "email"
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column
-    private LocalDateTime expiresAt = LocalDateTime.now().plusMinutes(15); // 15 minutes expiry
+    @Column(nullable = false)
+    private LocalDateTime expiresAt = LocalDateTime.now().plusMinutes(15);
 }

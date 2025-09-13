@@ -9,7 +9,7 @@ public class RegisterRequestDTO {
     private String phoneNumber;
     private String email;
 
-    private boolean isInstitutionalUser;
+    private boolean institutionalUser;
     private String dateOfBirth;
     private String district;
     private String palika;

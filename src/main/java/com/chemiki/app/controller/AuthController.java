@@ -10,27 +10,20 @@ import com.chemiki.app.dto.responseDto.LoginResponseDTO;
 import com.chemiki.app.dto.responseDto.OtpVerificationResponseDTO;
 import com.chemiki.app.dto.responseDto.RegisterResponseDTO;
 import com.chemiki.app.dto.responseDto.UserDetailResponseDTO;
-import com.chemiki.app.model.DetectionResult;
 import com.chemiki.app.service.LoginService;
-import com.chemiki.app.service.NepaliOffensiveDetectionService;
 import com.chemiki.app.service.OtpVerificationService;
 import com.chemiki.app.service.RegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final NepaliOffensiveDetectionService detectionService;
 
     private final LoginService loginService;
     private final RegistrationService registrationService;
@@ -39,6 +32,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<RegisterResponseDTO>> register(@Valid @RequestBody RegisterRequestDTO request) {
+
+       System.out.println(" this is the user type " +  request.isInstitutionalUser());
         ApiResponse<RegisterResponseDTO> response = registrationService.registerUser(request);
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
@@ -61,38 +56,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/hello-with-name")
-    public ResponseEntity<Map<String, String>> sayHelloWithName(@RequestBody Map<String, String> request) {
-        String name = request.get("name");
 
-        if (name == null || name.trim().isEmpty()) {
-            name = "abishek"; // Default name
-        }
-
-        return ResponseEntity.ok(Map.of(
-                "message", "hello " + name,
-                "status", "success"
-        ));
-    }
-
-
-    @PostMapping("/detect")
-    public ResponseEntity<DetectionResult> detectOffensive(@RequestBody Map<String, String> request) {
-        String text = request.get("text");
-
-        if (text == null || text.trim().isEmpty()) {
-            return ResponseEntity.badRequest()
-                    .body(DetectionResult.error("Text field is required and cannot be empty"));
-        }
-
-        DetectionResult result = detectionService.detectOffensiveContent(text);
-
-        if (!result.isSuccess()) {
-            return ResponseEntity.badRequest().body(result);
-        }
-
-        return ResponseEntity.ok(result);
-    }
     @PostMapping("/otp-verification")
     public ResponseEntity<ApiResponse<OtpVerificationResponseDTO>> verifyOtp(@Valid @RequestBody OtpVerificationRequestDTO request) {
         ApiResponse<OtpVerificationResponseDTO> response = otpVerificationService.verifyOtp(request);
@@ -136,6 +100,7 @@ public class AuthController {
                     status = HttpStatus.UNAUTHORIZED;
                     break;
                 case "INVALID_INPUT":
+                case "INVALID_LOGIN_METHOD":
                     status = HttpStatus.BAD_REQUEST;
                     break;
                 default:
@@ -145,7 +110,6 @@ public class AuthController {
             return ResponseEntity.status(status).body(response);
         }
     }
-
     @PostMapping("/refresh-token")
     public ResponseEntity<ApiResponse<LoginResponseDTO>> refreshToken(@Valid @RequestBody RefreshTokenRequestDTO request) {
         try {

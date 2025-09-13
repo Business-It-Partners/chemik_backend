@@ -15,6 +15,7 @@ public class UserDetailResponseDTO {
     private String profilePhotoUrl;
     private String coverPhotoUrl;
     private boolean isInstitutionalUser;
+    // add website as
     private String dateOfBirth;
     private String district;
     private String palika;
@@ -23,4 +24,5 @@ public class UserDetailResponseDTO {
     private boolean isVerified;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String website;
 }

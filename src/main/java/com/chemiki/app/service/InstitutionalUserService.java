@@ -30,7 +30,7 @@ public class InstitutionalUserService {
 //             List<User> institutionalUsers = userRepository.findAll();
 
             // LATER: Uncomment this line to fetch only institutional users
-             List<User> institutionalUsers = userRepository.findByIsInstitutionalUserTrue();
+             List<User> institutionalUsers = userRepository.findByInstitutionalUserTrue();
 
             List<InstitutionalUserResponseDTO> responseDTOs = institutionalUsers.stream()
                     .map(this::convertToResponseDTO)

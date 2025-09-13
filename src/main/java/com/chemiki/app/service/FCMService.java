@@ -105,7 +105,7 @@ public class FCMService {
     public void sendBroadcastNotification(Long senderId, String title, String body, String postType, Long postId) {
         try {
             // Validate postType
-            List<String> validPostTypes = List.of("NEWS", "NOTICE", "ALERT", "LOST_AND_FOUND");
+            List<String> validPostTypes = List.of("NEWS", "NOTICE", "ALERT", "LOST_AND_FOUND", "JOB");
             if (!validPostTypes.contains(postType)) {
                 log.error("Invalid post type: {}", postType);
                 return;
@@ -116,8 +116,9 @@ public class FCMService {
 
             // Create enhanced data payload for post navigation
             Map<String, String> data = new HashMap<>();
-            data.put("type", "POST");
-            data.put("action", "OPEN_POST");
+            data.put("type", postType.equals("JOB") ? "JOB" : "POST"); // Special handling for jobs
+            data.put("action", postType.equals("JOB") ? "OPEN_JOB" : "OPEN_POST");
+
             data.put("postType", postType);
             data.put("postId", String.valueOf(postId));
             data.put("senderId", String.valueOf(senderId));
@@ -175,7 +176,7 @@ public class FCMService {
                 return;
             }
 
-            String title = "💬 " + sender.getUsername() + " sent you a message";
+            String title =   sender.getUsername() + " sent a message";
             String body = messageContent.length() > 80 ?
                     messageContent.substring(0, 80) + "..." : messageContent;
 
@@ -209,7 +210,7 @@ public class FCMService {
                 return;
             }
 
-            String title = "💬 " + commenter.getUsername() + " commented on your post";
+            String title =commenter.getUsername() + " commented on your post";
             String body = commentContent.length() > 80 ?
                     commentContent.substring(0, 80) + "..." : commentContent;
 

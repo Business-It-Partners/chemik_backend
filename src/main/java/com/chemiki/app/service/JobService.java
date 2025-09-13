@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class JobService {
+    private final FCMService fcmService; // 🔥 NEW: Added FCM service
 
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
@@ -54,7 +55,12 @@ public class JobService {
             job.setCreatedAt(LocalDateTime.now());
             job.setUpdatedAt(LocalDateTime.now());
             job = jobRepository.save(job);
+// 🔥 NEW: Send broadcast notification for job posting
+            String title = "💼 New Job: " + job.getTitle();
+            String formattedSalary = formatSalary(job.getSalary());
+            String body = job.getLocation() + " • " + job.getJobType() + " • Rs. " + formattedSalary;
 
+            fcmService.sendBroadcastNotification(userId, title, body, "JOB", job.getId());
             JobResponseDTO responseDTO = new JobResponseDTO();
             responseDTO.setId(job.getId());
             responseDTO.setTitle(job.getTitle());
@@ -166,7 +172,7 @@ public class JobService {
     }
 
     // Close job (set isOpen = false)
-    public ApiResponse<Void> closeJob(Long jobId, Long userId) {
+    public ApiResponse<JobDetailResponseDTO> closeJob(Long jobId, Long userId) {
         try {
             Job job = jobRepository.findByIdAndDeletedFalse(jobId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job not found with id: " + jobId));
@@ -177,16 +183,34 @@ public class JobService {
 
             job.setOpen(false);
             job.setUpdatedAt(LocalDateTime.now());
-            jobRepository.save(job);
+            job = jobRepository.save(job);
 
-            return ApiResponse.success(null, "Job closed successfully");
+            User owner = userRepository.findById(job.getUserId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner not found for job id: " + jobId));
+
+            JobDetailResponseDTO dto = new JobDetailResponseDTO();
+            dto.setId(job.getId());
+            dto.setTitle(job.getTitle());
+            dto.setDescription(job.getDescription());
+            dto.setSalary(job.getSalary());
+            dto.setCategory(job.getCategory());
+            dto.setLocation(job.getLocation());
+            dto.setContactNo(job.getContactNo());
+            dto.setJobType(job.getJobType());
+            dto.setOpen(job.isOpen());
+            dto.setUserId(job.getUserId());
+            dto.setUsername(owner.getUsername());
+            dto.setOwnerPhoneNumber(owner.getPhoneNumber());
+            dto.setCreatedAt(job.getCreatedAt());
+            dto.setUpdatedAt(job.getUpdatedAt());
+
+            return ApiResponse.success(dto, "Job closed successfully");
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "JOB_NOT_FOUND");
         } catch (Exception e) {
             return ApiResponse.error("An error occurred while closing the job", "INTERNAL_SERVER_ERROR");
         }
     }
-
     // Replace your existing getMyJobs method with this generic method in JobService.java
 
     /**
@@ -229,5 +253,16 @@ public class JobService {
         } catch (Exception e) {
             return ApiResponse.error("An error occurred while retrieving user jobs", "INTERNAL_SERVER_ERROR");
         }
+    }
+
+    // Helper method to format salary with commas
+    private String formatSalary(Double salary) {
+        if (salary == null) return "0";
+
+        // Convert to long to remove decimal places for whole numbers
+        long salaryLong = salary.longValue();
+
+        // Format with commas (Indian number format)
+        return String.format("%,d", salaryLong);
     }
 }

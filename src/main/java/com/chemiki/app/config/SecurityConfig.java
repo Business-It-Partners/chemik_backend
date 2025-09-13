@@ -23,6 +23,8 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
@@ -49,7 +51,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // Allow your frontend
+        config.setAllowedOrigins(List.of(
+                "http://localhost:5173",        // frontend on PC
+                "http://192.168.18.12:5173"     // frontend on phone
+        ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); // Important if sending cookies or Authorization headers

@@ -194,25 +194,5 @@ public class DeviceTokenService {
         }
     }
 
-    /**
-     * Remove specific token (when user logs out)
-     */
-    @Transactional
-    public ApiResponse<String> removeDeviceToken(Long userId, String fcmToken) {
-        try {
-            Optional<DeviceToken> tokenOpt = deviceTokenRepository
-                    .findByUserIdAndFcmToken(userId, fcmToken);
 
-            if (tokenOpt.isPresent()) {
-                deviceTokenRepository.delete(tokenOpt.get());
-                log.info("Removed device token for user: {}", userId);
-                return ApiResponse.success("Token removed successfully", "Token removed successfully");
-            } else {
-                return ApiResponse.error("Token not found", "TOKEN_NOT_FOUND");
-            }
-        } catch (Exception e) {
-            log.error("Error removing device token: {}", e.getMessage());
-            return ApiResponse.error("Failed to remove token", "REMOVAL_ERROR");
-        }
-    }
 }

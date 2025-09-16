@@ -1,4 +1,32 @@
 HELP.md
+
+# Add these lines to your .gitignore file
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.production
+.env.staging
+
+# Application logs
+logs/
+*.log
+/var/log/
+
+# Upload directories
+uploads/
+/uploads/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

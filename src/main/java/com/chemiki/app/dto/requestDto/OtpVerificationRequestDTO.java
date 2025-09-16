@@ -8,5 +8,5 @@ import lombok.Data;
 public class OtpVerificationRequestDTO {
     private String token;
     private String otp;
-    private String phoneNumber;
+    private String email;
 }

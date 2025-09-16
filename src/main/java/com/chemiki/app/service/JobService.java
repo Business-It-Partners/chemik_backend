@@ -74,6 +74,7 @@ public class JobService {
             responseDTO.setUsername(user.getUsername());
             responseDTO.setCreatedAt(job.getCreatedAt());
             responseDTO.setUpdatedAt(job.getUpdatedAt());
+            responseDTO.setProfilePicture(user.getProfilePhotoUrl());
 
             return ApiResponse.success(responseDTO, "Job uploaded successfully");
         } catch (Exception e) {
@@ -107,6 +108,7 @@ public class JobService {
                 dto.setUsername(owner != null ? owner.getUsername() : "Unknown");
                 dto.setCreatedAt(job.getCreatedAt());
                 dto.setUpdatedAt(job.getUpdatedAt());
+                dto.setProfilePicture(owner.getProfilePhotoUrl() );
                 return dto;
             }).collect(Collectors.toList());
             return ApiResponse.success(responseDTOs, "Jobs retrieved successfully");
@@ -141,6 +143,7 @@ public class JobService {
             dto.setOwnerPhoneNumber(owner.getPhoneNumber());
             dto.setCreatedAt(job.getCreatedAt());
             dto.setUpdatedAt(job.getUpdatedAt());
+            dto.setProfilePicture(owner.getProfilePhotoUrl()); // Set profile picture URL
 
             return ApiResponse.success(dto, "Job details retrieved successfully");
         } catch (ResponseStatusException e) {

@@ -14,11 +14,8 @@ public interface OtpRepository extends JpaRepository<Otp, Long> {
     // For general users (phone-based OTP)
     Optional<Otp> findByTokenAndPhoneNumberAndExpiresAtAfter(String token, String phoneNumber, LocalDateTime currentTime);
 
-    // For institutional users (email-based OTP)
+    // For email-based OTP
     Optional<Otp> findByTokenAndEmailAndExpiresAtAfter(String token, String email, LocalDateTime currentTime);
-
-    // Generic method to find by token (regardless of delivery method)
-    Optional<Otp> findByTokenAndExpiresAtAfter(String token, LocalDateTime currentTime);
 
     // Clean up expired OTPs
     void deleteByExpiresAtBefore(LocalDateTime currentTime);

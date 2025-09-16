@@ -1,0 +1,36 @@
+[33mcommit 8d1236ea5d03228ac730810decb86c1b3b8378f9[m
+Author: abishke tiwari <tiwariabishek44@gmail.com>
+Date:   Sun Aug 31 19:56:31 2025 +0545
+
+     latest update regard to user profile update, forget password, product sold/avilable response to proudct details
+
+application.log
+src/main/java/com/chemiki/app/config/SecurityConfig.java
+src/main/java/com/chemiki/app/config/WebConfig.java
+src/main/java/com/chemiki/app/controller/CommentController.java
+src/main/java/com/chemiki/app/controller/DeviceTokenController.java
+src/main/java/com/chemiki/app/controller/ForgotPasswordController.java
+src/main/java/com/chemiki/app/controller/MarketplaceController.java
+src/main/java/com/chemiki/app/controller/ProfileUpdateController.java
+src/main/java/com/chemiki/app/dto/requestDto/ForgotPasswordRequestDTO.java
+src/main/java/com/chemiki/app/dto/requestDto/RegisterRequestDTO.java
+src/main/java/com/chemiki/app/dto/requestDto/ResetPasswordRequestDTO.java
+src/main/java/com/chemiki/app/dto/requestDto/UpdateProfileRequestDTO.java
+src/main/java/com/chemiki/app/dto/responseDto/ForgotPasswordResponseDTO.java
+src/main/java/com/chemiki/app/dto/responseDto/RegisterResponseDTO.java
+src/main/java/com/chemiki/app/dto/responseDto/ResetPasswordResponseDTO.java
+src/main/java/com/chemiki/app/dto/responseDto/UpdateProfileResponseDTO.java
+src/main/java/com/chemiki/app/model/PasswordReset.java
+src/main/java/com/chemiki/app/model/User.java
+src/main/java/com/chemiki/app/repository/DeviceTokenRepository.java
+src/main/java/com/chemiki/app/repository/PasswordResetRepository.java
+src/main/java/com/chemiki/app/service/CommentService.java
+src/main/java/com/chemiki/app/service/DeviceTokenService.java
+src/main/java/com/chemiki/app/service/FCMService.java
+src/main/java/com/chemiki/app/service/ForgotPasswordService.java
+src/main/java/com/chemiki/app/service/MarketplaceService.java
+src/main/java/com/chemiki/app/service/OtpVerificationService.java
+src/main/java/com/chemiki/app/service/PostService.java
+src/main/java/com/chemiki/app/service/ProfileUpdateService.java
+src/main/resources/firebase-adminsdk.json
+uploads/profile-images/profile_6d8d9191-a8b1-4466-8857-28f9c5213823_Screenshot from 2025-08-31 15-04-57.png

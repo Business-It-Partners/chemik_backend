@@ -10,5 +10,6 @@ public class ConversationResponseDTO {
     private String lastMessage;
     private LocalDateTime lastMessageTime;
     private boolean hasUnreadMessages;
+    private String profilePicture; // NEW: Profile picture URL
     private Long unreadCount;
 }

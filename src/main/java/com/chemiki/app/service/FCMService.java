@@ -176,7 +176,7 @@ public class FCMService {
                 return;
             }
 
-            String title =   sender.getUsername() + " sent a message";
+            String title =   sender.getUsername() ;
             String body = messageContent.length() > 80 ?
                     messageContent.substring(0, 80) + "..." : messageContent;
 
@@ -210,23 +210,19 @@ public class FCMService {
                 return;
             }
 
-            String title =commenter.getUsername() + " commented on your post";
+            String title =commenter.getUsername() + " comment";
             String body = commentContent.length() > 80 ?
                     commentContent.substring(0, 80) + "..." : commentContent;
 
             // Create enhanced data payload for comment navigation
             Map<String, String> data = new HashMap<>();
             data.put("type", "COMMENT");
-            data.put("action", "OPEN_POST");
-            data.put("commenterId", String.valueOf(commenterId));
-            data.put("commenterUsername", commenter.getUsername());
+
+
+
             data.put("postId", String.valueOf(postId));
-            data.put("postOwnerId", String.valueOf(postOwnerId));
-            data.put("navigateTo", "PostDetailScreen");
-            data.put("highlightComment", "true");
-            data.put("scrollToComments", "true");
-            data.put("isFromNotification", "true");
-            data.put("click_action", "OPEN_POST");
+
+
 
             sendNotificationToUserWithData(commenterId, postOwnerId, title, body, data);
         } catch (Exception e) {

@@ -70,14 +70,8 @@ public class ForgotPasswordService {
                 return ApiResponse.error(errorMessage, "USER_NOT_FOUND");
             }
 
-            // Validate user type matches the reset method
-            if (hasPhone && user.isInstitutionalUser()) {
-                return ApiResponse.error("Institutional users should use email for password reset", "INVALID_RESET_METHOD");
-            }
 
-            if (hasEmail && !user.isInstitutionalUser()) {
-                return ApiResponse.error("Individual users should use phone number for password reset", "INVALID_RESET_METHOD");
-            }
+
 
             // Clean up any existing reset request for this user
             cleanupExistingPasswordReset(user.isInstitutionalUser(), phoneNumber, email);
@@ -92,21 +86,15 @@ public class ForgotPasswordService {
             passwordReset.setCreatedAt(LocalDateTime.now());
             passwordReset.setExpiresAt(LocalDateTime.now().plusMinutes(15));
 
-            boolean otpSent = false;
 
-            if (user.isInstitutionalUser()) {
-                // For institutional users: use email
-                passwordReset.setEmail(email);
-                passwordReset.setPhoneNumber(null);
-                passwordReset.setDeliveryMethod("email");
-                otpSent = otpService.sendPasswordResetOtpToEmail(email, otpCode, user.getUsername());
-            } else {
-                // For general users: use phone
-                passwordReset.setPhoneNumber(phoneNumber);
-                passwordReset.setEmail(null);
-                passwordReset.setDeliveryMethod("phone");
-                otpSent = otpService.sendPasswordResetOtpToPhone(phoneNumber, otpCode, user.getUsername());
-            }
+            passwordReset.setEmail(email);
+            passwordReset.setPhoneNumber(null);
+            passwordReset.setDeliveryMethod("email");
+            boolean otpSent  = otpService.sendPasswordResetOtpToEmail(email, otpCode, user.getUsername());
+
+
+
+
 
             if (!otpSent) {
                 return ApiResponse.error("Failed to send password reset OTP. Please try again.", "OTP_DELIVERY_FAILED");
@@ -117,13 +105,10 @@ public class ForgotPasswordService {
             // Build response
             ForgotPasswordResponseDTO response = new ForgotPasswordResponseDTO();
             response.setToken(passwordReset.getToken());
-            response.setPhoneNumber(hasPhone ? phoneNumber : null);
+            response.setEmail(email);
 
-            String deliveryTarget = user.isInstitutionalUser() ? email : phoneNumber;
-            String method = user.isInstitutionalUser() ? "email" : "phone number";
-            response.setMessage("Password reset OTP sent to " + method + ": " + deliveryTarget);
+            response.setMessage("Password reset OTP sent to " + "email" + ": " + email);
 
-            System.out.println("🔑 Password reset requested for " + method + ": " + deliveryTarget);
 
             return ApiResponse.success(response, response.getMessage());
 
@@ -138,8 +123,7 @@ public class ForgotPasswordService {
         try {
             // Input validation
             String token = request.getToken();
-            String phoneNumber = request.getPhoneNumber();
-            String otpCode = request.getOtp();
+             String otpCode = request.getOtp();
             String newPassword = request.getNewPassword();
 
             if (token == null || token.isEmpty() || otpCode == null || otpCode.isEmpty() ||
@@ -188,9 +172,7 @@ public class ForgotPasswordService {
             ResetPasswordResponseDTO response = new ResetPasswordResponseDTO();
             response.setMessage("Password reset successfully");
 
-            String userType = user.isInstitutionalUser() ? "Institutional" : "Individual";
-            System.out.println("🔐 Password reset completed for " + userType + " user: " +
-                    (user.isInstitutionalUser() ? user.getEmail() : user.getPhoneNumber()));
+
 
             return ApiResponse.success(response, "Password reset successfully");
 
@@ -205,15 +187,22 @@ public class ForgotPasswordService {
      */
     private void cleanupExistingPasswordReset(boolean isInstitutional, String phoneNumber, String email) {
         try {
-            if (isInstitutional && email != null) {
-                // For institutional users, clean up email-based resets
-                passwordResetRepository.findByEmail(email).ifPresent(passwordResetRepository::delete);
-                System.out.println("🧹 Cleaned up existing email password reset for: " + email);
-            } else if (!isInstitutional && phoneNumber != null) {
-                // For general users, clean up phone-based resets
-                passwordResetRepository.findByPhoneNumber(phoneNumber).ifPresent(passwordResetRepository::delete);
-                System.out.println("🧹 Cleaned up existing phone password reset for: " + phoneNumber);
-            }
+
+
+            passwordResetRepository.findByEmail(email).ifPresent(passwordResetRepository::delete);
+            System.out.println("🧹 Cleaned up existing email password reset for: " + email);
+
+
+            // ------ this is for when we do have the proper seperation of institutional and general users -------
+//            if (isInstitutional && email != null) {
+//                // For institutional users, clean up email-based resets
+//                passwordResetRepository.findByEmail(email).ifPresent(passwordResetRepository::delete);
+//                System.out.println("🧹 Cleaned up existing email password reset for: " + email);
+//            } else if (!isInstitutional && phoneNumber != null) {
+//                // For general users, clean up phone-based resets
+//                passwordResetRepository.findByPhoneNumber(phoneNumber).ifPresent(passwordResetRepository::delete);
+//                System.out.println("🧹 Cleaned up existing phone password reset for: " + phoneNumber);
+//            }
         } catch (Exception e) {
             System.err.println("Warning: Failed to cleanup existing password reset: " + e.getMessage());
             // Don't fail the reset process if cleanup fails

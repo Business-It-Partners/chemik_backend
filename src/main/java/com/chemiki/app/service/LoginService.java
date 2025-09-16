@@ -46,11 +46,9 @@ public class LoginService {
 
             // Find user based on provided identifier
             User user = null;
-            String loginIdentifier = null;
 
             if (hasPhone) {
                 user = userRepository.findByPhoneNumber(phoneNumber).orElse(null);
-                loginIdentifier = phoneNumber;
 
                 if (user != null && user.isInstitutionalUser()) {
                     return ApiResponse.error("Institutional users should login with email address", "INVALID_LOGIN_METHOD");
@@ -61,11 +59,11 @@ public class LoginService {
                         .filter(u -> email.equals(u.getEmail()))
                         .findFirst();
                 user = userOptional.orElse(null);
-                loginIdentifier = email;
 
-                if (user != null && !user.isInstitutionalUser()) {
-                    return ApiResponse.error("Login with phone number", "INVALID_LOGIN_METHOD");
-                }
+       //------------- enable if there is a need to restrict email logins to institutional users only -----------------
+//                if (user != null && !user.isInstitutionalUser()) {
+//                    return ApiResponse.error("Login with phone number", "INVALID_LOGIN_METHOD");
+//                }
             }
 
             if (user == null) {
@@ -91,9 +89,6 @@ public class LoginService {
                         .refreshToken(refreshToken)
                         .build();
 
-                String userType = user.isInstitutionalUser() ? "Institutional" : "Individual";
-                String loginMethod = hasPhone ? "phone number" : "email";
-                System.out.println("✅ Login successful - " + userType + " user via " + loginMethod + ": " + loginIdentifier);
 
                 return ApiResponse.success(responseDTO, "Login successful");
 
@@ -121,20 +116,15 @@ public class LoginService {
                         .orElseThrow(() ->
                                 new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this user ID"));
             } else {
-                // Check if phoneNumber contains '@' to determine if it's an email
-                if (phoneNumber.contains("@")) {
-                    // Treat as email
+
+
+
                     user = userRepository.findByEmail(phoneNumber)
                             .orElseThrow(() ->
                                     new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this email address"));
-                } else {
-                    // Treat as phone number
-                    user = userRepository.findByPhoneNumber(phoneNumber)
-                            .orElseThrow(() ->
-                                    new ResponseStatusException(HttpStatus.NOT_FOUND, "No account associated with this phone number"));
-                }
-            }
 
+            }
+// comment is this
             // Map User to UserDetailResponseDTO
             UserDetailResponseDTO responseDTO = new UserDetailResponseDTO(
                     user.getId(),
@@ -159,6 +149,7 @@ public class LoginService {
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ApiResponse.error("An error occurred while retrieving user details", "INTERNAL_SERVER_ERROR");
         }
     }

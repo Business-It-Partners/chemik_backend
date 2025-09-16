@@ -34,7 +34,10 @@ public class DeviceTokenController {
         if (response.isSuccess()) {
             return ResponseEntity.ok(response);
         } else {
+
             String errorCode = response.getErrorCode();
+            System.out.println("the eroro is :----" + errorCode);
+
             HttpStatus status;
             switch (errorCode) {
                 case "USER_NOT_FOUND":

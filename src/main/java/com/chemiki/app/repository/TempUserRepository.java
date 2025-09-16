@@ -12,5 +12,9 @@ import java.util.Optional;
 public interface TempUserRepository extends JpaRepository<TempUser, Long> {
     Optional<TempUser> findByPhoneNumber(String phoneNumber);
 
+    // find by email
+    Optional<TempUser> findByEmail(String email);
+
+
 }
 

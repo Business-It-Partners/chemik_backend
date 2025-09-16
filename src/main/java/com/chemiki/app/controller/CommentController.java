@@ -3,8 +3,7 @@ package com.chemiki.app.controller;
 import com.chemiki.app.dto.ApiResponse;
 import com.chemiki.app.dto.requestDto.CreateCommentRequestDTO;
 import com.chemiki.app.dto.responseDto.CommentResponseDTO;
-import com.chemiki.app.service.ClaudeService;
-import com.chemiki.app.service.CommentService;
+ import com.chemiki.app.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,29 +19,9 @@ import java.util.Map;
 @RequestMapping("/api/comments")
 @RequiredArgsConstructor
 public class CommentController {
-    private final ClaudeService claudeService;
 
     private final CommentService commentService;
 
-    // Create a new comment
-@PostMapping("/check-comment")
-    public ResponseEntity<String> checkComment(@RequestBody Map<String, String> requestBody) {
-        String commentText = requestBody.get("text");
-        if (commentText == null || commentText.isEmpty()) {
-            return ResponseEntity.badRequest().body("Comment text is required.");
-        }
-
-        boolean containsHateSpeech = claudeService.isHateSpeech(commentText);
-
-
-        if (containsHateSpeech) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("⚠️ Please avoid hate speech or offensive content.");
-        } else {
-            return ResponseEntity.ok("✅ Comment looks good and safe to post.");
-        }
-    }
     @PostMapping
     public ResponseEntity<ApiResponse<CommentResponseDTO>> createComment(
             @Valid @RequestBody CreateCommentRequestDTO request,

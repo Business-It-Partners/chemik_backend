@@ -6,6 +6,6 @@ import lombok.Data;
 public class ResetPasswordRequestDTO {
     private String token;
     private String otp;
-    private String phoneNumber;
+    private String email;
     private String newPassword;
 }

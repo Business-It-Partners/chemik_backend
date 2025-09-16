@@ -89,8 +89,8 @@ public class PostService {
             Post savedPost = postRepository.save(post);
 
             // Send notification (unchanged from original)
-            String notificationTitle = getNotificationTitle(savedPost.getPostType(), user.getUsername(), user.isInstitutionalUser());
-            fcmService.sendBroadcastNotification(userId, notificationTitle, savedPost.getContent(), savedPost.getPostType(), savedPost.getId());
+            String notificationTitle = getNotificationTitle(savedPost.getPostType(),  user.isInstitutionalUser());
+            fcmService.sendBroadcastNotification(userId, notificationTitle, user.getUsername()+ ": " +savedPost.getContent(), savedPost.getPostType(), savedPost.getId());
 
             PostResponseDTO responseDTO = convertToResponseDTO(savedPost, user, userId);
             return ApiResponse.success(responseDTO, "Post created successfully");
@@ -278,19 +278,19 @@ public class PostService {
     }
 
     // Helper method for notifications
-    private String getNotificationTitle(String postType, String authorName, boolean isInstitutionalUser) {
-        String source = isInstitutionalUser ? authorName : authorName + "'s Post";
+    private String getNotificationTitle(String postType,   boolean isInstitutionalUser) {
+
         switch (postType) {
             case "NEWS":
-                return "📰 New Update: " + source;
+                return " New Update"  ;
             case "NOTICE":
-                return "📢 Notice: " + source;
+                return "📢 Notice"  ;
             case "ALERT":
-                return "🚨 Urgent Alert: " + source;
+                return "🚨 Urgent Alert" ;
             case "LOST_AND_FOUND":
-                return "🔍 Lost & Found: " + source;
+                return "🔍 Lost & Found" ;
             default:
-                return "New Post: " + source;
+                return "New Post"  ;
         }
     }
 }

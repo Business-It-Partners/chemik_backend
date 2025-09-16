@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ForgotPasswordResponseDTO {
     private String token;
-    private String phoneNumber;
+    private String email;
     private String message;
 }

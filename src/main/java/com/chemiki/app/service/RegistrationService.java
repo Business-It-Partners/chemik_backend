@@ -47,18 +47,20 @@ public class RegistrationService implements UserDetailsService {
             String email = request.getEmail();
             boolean isInstitutional = request.isInstitutionalUser();
 
-            // Check if phone number already exists in User table (fully registered users)
+            // Check if phone number already exists in User table
             if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) {
                 return ApiResponse.error("Phone number " + phoneNumber + " is already registered", "PHONE_NUMBER_EXISTS");
             }
 
-            // Validation for institutional users
-            if (isInstitutional && (email == null || email.trim().isEmpty())) {
-                return ApiResponse.error("Email is required for institutional users", "EMAIL_REQUIRED");
+
+             // Check if email already exists in User table (fully registered users)
+            if (userRepository.findByEmail(email).isPresent()) {
+                return ApiResponse.error("Phone number " + email + " is already registered", "PHONE_NUMBER_EXISTS");
             }
 
-            // Check if phone number exists in TempUser table (incomplete registration)
-            Optional<TempUser> existingTempUser = tempUserRepository.findByPhoneNumber(phoneNumber);
+
+
+             Optional<TempUser> existingTempUser = tempUserRepository.findByPhoneNumber(phoneNumber);
             TempUser tempUser;
 
             if (existingTempUser.isPresent()) {
@@ -81,7 +83,7 @@ public class RegistrationService implements UserDetailsService {
                 System.out.println("📝 Updating existing temp user registration for: " + phoneNumber);
 
                 // Clean up any existing OTPs for this phone number
-                cleanupExistingOtps(phoneNumber, isInstitutional, email);
+                cleanupExistingOtps( email);
             } else {
                 // Create new temp user
                 tempUser = new TempUser();
@@ -113,20 +115,13 @@ public class RegistrationService implements UserDetailsService {
             otp.setCreatedAt(LocalDateTime.now());
             otp.setExpiresAt(LocalDateTime.now().plusMinutes(15));
 
-            boolean otpSent = false;
-            if (isInstitutional) {
-                // For institutional users: use email for OTP
-                otp.setEmail(email);
-                otp.setPhoneNumber(null);
-                otp.setDeliveryMethod("email");
-                otpSent = otpService.sendOtpToEmail(email, otpCode, username);
-            } else {
-                // For general users: use phone for OTP
-                otp.setPhoneNumber(phoneNumber);
-                otp.setEmail(null);
-                otp.setDeliveryMethod("phone");
-                otpSent = otpService.sendOtpToPhone(phoneNumber, otpCode, username);
-            }
+
+
+            //For Sending Otp to user  users: use email for OTP
+            otp.setEmail(email);
+            otp.setDeliveryMethod("email");
+            boolean otpSent   = otpService.sendOtpToEmail(email, otpCode, username);
+
 
             if (!otpSent) {
                 return ApiResponse.error("Failed to send OTP. Please try again.", "OTP_DELIVERY_FAILED");
@@ -137,12 +132,10 @@ public class RegistrationService implements UserDetailsService {
             // Build response
             RegisterResponseDTO response = new RegisterResponseDTO();
             response.setToken(otp.getToken());
-            response.setPhoneNumber(phoneNumber);
+            response.setEmail(email);
 
-            String deliveryTarget = isInstitutional ? email : phoneNumber;
-            String deliveryMethod = isInstitutional ? "email" : "phone number";
             String actionMessage = existingTempUser.isPresent() ? "New OTP sent to" : "OTP sent to";
-            response.setMessage(actionMessage + " " + deliveryMethod + ": " + deliveryTarget);
+            response.setMessage(actionMessage + " " + "Email " + ": " + email);
 
             return ApiResponse.success(response, response.getMessage());
 
@@ -154,27 +147,19 @@ public class RegistrationService implements UserDetailsService {
         }
     }
 
+
     /**
-     * Clean up any existing OTPs for the phone number/email to prevent conflicts
+     * Clean up any existing OTPs for the email
      */
-    private void cleanupExistingOtps(String phoneNumber, boolean isInstitutional, String email) {
+    private void cleanupExistingOtps(String email) {
         try {
-            if (isInstitutional && email != null) {
-                // For institutional users, clean up email-based OTPs
-                otpRepository.findAll().stream()
-                        .filter(otp -> email.equals(otp.getEmail()))
-                        .forEach(otpRepository::delete);
-                System.out.println("🧹 Cleaned up existing email OTPs for: " + email);
-            } else {
-                // For general users, clean up phone-based OTPs
-                otpRepository.findAll().stream()
-                        .filter(otp -> phoneNumber.equals(otp.getPhoneNumber()))
-                        .forEach(otpRepository::delete);
-                System.out.println("🧹 Cleaned up existing phone OTPs for: " + phoneNumber);
-            }
+            otpRepository.findAll().stream()
+                    .filter(otp -> email.equals(otp.getEmail()))
+                    .forEach(otpRepository::delete);
+            System.out.println("🧹 Cleaned up existing email OTPs for: " + email);
         } catch (Exception e) {
             System.err.println("Warning: Failed to cleanup existing OTPs: " + e.getMessage());
-            // Don't fail the registration process if cleanup fails
         }
     }
+
 }

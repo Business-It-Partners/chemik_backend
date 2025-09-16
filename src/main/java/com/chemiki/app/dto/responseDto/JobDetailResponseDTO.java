@@ -17,6 +17,7 @@ public class JobDetailResponseDTO {
     private Long userId; // Owner's user ID
     private String username; // Owner's username
     private String ownerPhoneNumber; // Owner's phone number
+    private String profilePicture; // NEW: Profile picture URL
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

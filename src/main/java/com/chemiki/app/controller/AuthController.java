@@ -66,7 +66,7 @@ public class AuthController {
             String errorCode = response.getErrorCode();
             HttpStatus status;
             switch (errorCode) {
-                case "PHONE_NUMBER_EXISTS":
+                case "EMAIL_EXISTS":
                     status = HttpStatus.CONFLICT;
                     break;
                 case "INVALID_INPUT":

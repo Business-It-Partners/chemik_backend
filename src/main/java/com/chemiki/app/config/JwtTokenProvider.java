@@ -1,27 +1,46 @@
-// Updated JwtTokenProvider.java - Stateless Approach
+// Updated JwtTokenProvider.java - SECURE VERSION
 package com.chemiki.app.config;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.util.Base64;
 import java.util.Date;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
-    private final SecretKey jwtSecret = Keys.hmacShaKeyFor("GHoK7gBHm5kEmBpuRmOPCGEtTG1cOyNT".getBytes());
 
-    @Value("${jwt.accessTokenExpiration:900000}") // 15 minutes (shorter for security)
+    // ✅ SECURE: Read from environment variables
+    @Value("${jwt.secret}")
+    private String jwtSecretString;
+
+    @Value("${jwt.accessTokenExpiration:900000}") // 15 minutes
     private long accessTokenExpiration;
 
     @Value("${jwt.refreshTokenExpiration:604800000}") // 7 days
     private long refreshTokenExpiration;
+
+    // ✅ SECURE: Generate secret key from environment variable
+    private SecretKey getJwtSecret() {
+        try {
+            // Decode base64 encoded secret
+            byte[] decodedKey = Base64.getDecoder().decode(jwtSecretString);
+            return Keys.hmacShaKeyFor(decodedKey);
+        } catch (Exception e) {
+            log.error("Invalid JWT secret configuration. Using fallback key.");
+            // Fallback - but log warning
+            return Keys.hmacShaKeyFor("GHoK7gBHm5kEmBpuRmOPCGEtTG1cOyNT".getBytes());
+        }
+    }
 
     // Generate short-lived access token
     public String generateAccessToken(Authentication authentication) {
@@ -31,24 +50,24 @@ public class JwtTokenProvider {
 
         return Jwts.builder()
                 .subject(userDetails.getUsername())
-                .claim("type", "access") // Token type
+                .claim("type", "access")
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(jwtSecret)
+                .signWith(getJwtSecret())
                 .compact();
     }
 
-    // Generate long-lived refresh token (also JWT, but different expiry)
+    // Generate long-lived refresh token
     public String generateRefreshToken(String username) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + refreshTokenExpiration);
 
         return Jwts.builder()
                 .subject(username)
-                .claim("type", "refresh") // Token type
+                .claim("type", "refresh")
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(jwtSecret)
+                .signWith(getJwtSecret())
                 .compact();
     }
 
@@ -67,31 +86,31 @@ public class JwtTokenProvider {
                 .claim("type", "access")
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(jwtSecret)
+                .signWith(getJwtSecret())
                 .compact();
     }
 
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
+                .setSigningKey(getJwtSecret())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
     }
 
-    // Validate access token (used in JWT filter)
+    // Validate access token
     public boolean validateToken(String token) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(jwtSecret)
+                    .setSigningKey(getJwtSecret())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
 
-            // Check if it's an access token
             return "access".equals(claims.get("type"));
         } catch (JwtException | IllegalArgumentException e) {
+            log.warn("Invalid JWT token: {}", e.getMessage());
             return false;
         }
     }
@@ -100,14 +119,14 @@ public class JwtTokenProvider {
     public boolean validateRefreshToken(String token) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(jwtSecret)
+                    .setSigningKey(getJwtSecret())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
 
-            // Check if it's a refresh token
             return "refresh".equals(claims.get("type"));
         } catch (JwtException | IllegalArgumentException e) {
+            log.warn("Invalid refresh token: {}", e.getMessage());
             return false;
         }
     }

@@ -91,8 +91,8 @@ public class MessageService {
             markMessagesAsRead(userId, otherUserId);
 
             List<MessageResponseDTO> responseDTOs = messages.stream().map(message -> {
-                User sender = userRepository.findById(message.getSenderId()).orElse(null);
-                User receiver = userRepository.findById(message.getReceiverId()).orElse(null);
+                User sender = userRepository.findById(userId).orElse(null);
+                User receiver = userRepository.findById(otherUserId ).orElse(null);
 
                 MessageResponseDTO dto = new MessageResponseDTO();
                 dto.setId(message.getId());
@@ -104,6 +104,9 @@ public class MessageService {
                 dto.setRead(message.isRead());
                 dto.setCreatedAt(message.getCreatedAt());
                 dto.setReadAt(message.getReadAt());
+                dto.setSenderProfilePicture( sender.getProfilePhotoUrl() );
+                dto.setReceiverProfilePicture( receiver.getProfilePhotoUrl() );
+
                 return dto;
             }).collect(Collectors.toList());
 
@@ -137,6 +140,7 @@ public class MessageService {
                     dto.setOtherUsername(otherUser != null ? otherUser.getUsername() : "Unknown");
                     dto.setLastMessage(message.getContent());
                     dto.setLastMessageTime(message.getCreatedAt());
+                    dto.setProfilePicture( otherUser.getProfilePhotoUrl()  );
 
                     // Check for unread messages in this conversation
                     List<Message> conversationMessages = messageRepository.findConversationBetweenUsers(userId, otherUserId);

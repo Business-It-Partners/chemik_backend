@@ -32,13 +32,11 @@ public class JwtTokenProvider {
     // ✅ SECURE: Generate secret key from environment variable
     private SecretKey getJwtSecret() {
         try {
-            // Decode base64 encoded secret
             byte[] decodedKey = Base64.getDecoder().decode(jwtSecretString);
             return Keys.hmacShaKeyFor(decodedKey);
         } catch (Exception e) {
-            log.error("Invalid JWT secret configuration. Using fallback key.");
-            // Fallback - but log warning
-            return Keys.hmacShaKeyFor("GHoK7gBHm5kEmBpuRmOPCGEtTG1cOyNT".getBytes());
+            log.error("Failed to decode JWT secret: {}", e.getMessage());
+            throw new IllegalStateException("Invalid JWT secret configuration");
         }
     }
 

@@ -1,8 +1,11 @@
 package com.chemiki.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+ 
+import java.time.Instant;
 
 @Data
 @Entity
@@ -26,10 +29,13 @@ public class Message {
     private boolean isRead = false; // Message read status
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
 
     @Column
-    private LocalDateTime readAt; // When the message was read
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant readAt; // When the message was read
 
     @Column
     private boolean deleted = false; // Soft delete flag

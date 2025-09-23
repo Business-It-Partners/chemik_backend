@@ -55,12 +55,12 @@ public class RegistrationService implements UserDetailsService {
 
              // Check if email already exists in User table (fully registered users)
             if (userRepository.findByEmail(email).isPresent()) {
-                return ApiResponse.error("Phone number " + email + " is already registered", "PHONE_NUMBER_EXISTS");
+                return ApiResponse.error("Email " + email + " is already registered", "EMAIL_EXISTS");
             }
 
 
 
-             Optional<TempUser> existingTempUser = tempUserRepository.findByPhoneNumber(phoneNumber);
+             Optional<TempUser> existingTempUser = tempUserRepository.findByEmail(email);
             TempUser tempUser;
 
             if (existingTempUser.isPresent()) {
@@ -77,10 +77,8 @@ public class RegistrationService implements UserDetailsService {
                 tempUser.setPalika(request.getPalika());
                 tempUser.setWard(request.getWard());
                 tempUser.setInstitutionCategory(request.getInstitutionCategory());
-                tempUser.setCreatedAt(LocalDateTime.now()); // Reset creation time
-                tempUser.setExpiresAt(LocalDateTime.now().plusMinutes(30)); // Reset expiry
 
-                System.out.println("📝 Updating existing temp user registration for: " + phoneNumber);
+                System.out.println("📝 Updating existing temp user registration for: " + email);
 
                 // Clean up any existing OTPs for this phone number
                 cleanupExistingOtps( email);
@@ -99,10 +97,8 @@ public class RegistrationService implements UserDetailsService {
                 tempUser.setPalika(request.getPalika());
                 tempUser.setWard(request.getWard());
                 tempUser.setInstitutionCategory(request.getInstitutionCategory());
-                tempUser.setCreatedAt(LocalDateTime.now());
-                tempUser.setExpiresAt(LocalDateTime.now().plusMinutes(30));
 
-                System.out.println("🆕 Creating new temp user registration for: " + phoneNumber);
+                System.out.println("🆕 Creating new temp user registration for: " + email);
             }
 
             tempUser = tempUserRepository.save(tempUser);
@@ -112,8 +108,6 @@ public class RegistrationService implements UserDetailsService {
             Otp otp = new Otp();
             otp.setToken(UUID.randomUUID().toString());
             otp.setOtp(otpCode);
-            otp.setCreatedAt(LocalDateTime.now());
-            otp.setExpiresAt(LocalDateTime.now().plusMinutes(15));
 
 
 

@@ -26,7 +26,7 @@ public class ProfileUpdateService {
     private final UserRepository userRepository;
 
     // Dynamic base URL configuration (same as PostService)
-    @Value("${app.base-url:https://dgclick.com}")
+    @Value("${app.base-url}")
     private String baseUrl;
 
     // Folder to store profile images
@@ -62,8 +62,6 @@ public class ProfileUpdateService {
                 user.setProfilePhotoUrl(profilePictureUrl);
             }
 
-            // Update timestamp
-            user.setUpdatedAt(LocalDateTime.now());
 
             // Save user
             user = userRepository.save(user);

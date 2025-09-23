@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +52,7 @@ public class DeviceTokenService {
                 return ApiResponse.error("FCM token cannot be empty", "INVALID_FCM_TOKEN");
             }
 
-            // 🔥 KEY FIX: Check if this FCM token already exists for ANY user
+            // Check if this FCM token already exists for ANY user
             Optional<DeviceToken> existingTokenForAnyUser = deviceTokenRepository.findByFcmToken(fcmToken);
 
             if (existingTokenForAnyUser.isPresent()) {
@@ -92,8 +93,8 @@ public class DeviceTokenService {
         token.setActive(true);
         token.setDeviceType(request.getDeviceType().toUpperCase());
         token.setDeviceInfo(request.getDeviceInfo());
-        token.setUpdatedAt(LocalDateTime.now());
-        token.setLastUsedAt(LocalDateTime.now());
+        // @UpdateTimestamp will handle updatedAt automatically
+        token.setLastUsedAt(Instant.now());
         deviceTokenRepository.save(token);
     }
 
@@ -107,8 +108,8 @@ public class DeviceTokenService {
         existingToken.setActive(true);
         existingToken.setDeviceType(request.getDeviceType().toUpperCase());
         existingToken.setDeviceInfo(request.getDeviceInfo());
-        existingToken.setUpdatedAt(LocalDateTime.now());
-        existingToken.setLastUsedAt(LocalDateTime.now());
+        // @UpdateTimestamp will handle updatedAt automatically
+        existingToken.setLastUsedAt(Instant.now());
         deviceTokenRepository.save(existingToken);
     }
 
@@ -122,9 +123,9 @@ public class DeviceTokenService {
         newToken.setDeviceType(request.getDeviceType().toUpperCase());
         newToken.setDeviceInfo(request.getDeviceInfo());
         newToken.setActive(true);
-        newToken.setCreatedAt(LocalDateTime.now());
-        newToken.setUpdatedAt(LocalDateTime.now());
-        newToken.setLastUsedAt(LocalDateTime.now());
+        // @CreationTimestamp will handle createdAt automatically
+        // @UpdateTimestamp will handle updatedAt automatically
+        newToken.setLastUsedAt(Instant.now());
         deviceTokenRepository.save(newToken);
     }
 
@@ -143,7 +144,7 @@ public class DeviceTokenService {
         Optional<DeviceToken> tokenOpt = deviceTokenRepository.findByFcmToken(fcmToken);
         if (tokenOpt.isPresent()) {
             DeviceToken token = tokenOpt.get();
-            token.setLastUsedAt(LocalDateTime.now());
+            token.setLastUsedAt(Instant.now());
             deviceTokenRepository.save(token);
         }
     }
@@ -157,18 +158,11 @@ public class DeviceTokenService {
         if (tokenOpt.isPresent()) {
             DeviceToken token = tokenOpt.get();
             token.setActive(false);
-            token.setUpdatedAt(LocalDateTime.now());
+            // @UpdateTimestamp will handle updatedAt automatically
             deviceTokenRepository.save(token);
             log.info("Marked FCM token as inactive: {}...",
                     fcmToken.substring(0, Math.min(fcmToken.length(), 20)));
         }
-    }
-
-    /**
-     * Get user's device tokens (for admin/debugging)
-     */
-    public List<DeviceToken> getUserDeviceTokens(Long userId) {
-        return deviceTokenRepository.findByUserId(userId);
     }
 
     /**
@@ -193,6 +187,4 @@ public class DeviceTokenService {
             log.error("Error during token cleanup: {}", e.getMessage());
         }
     }
-
-
 }

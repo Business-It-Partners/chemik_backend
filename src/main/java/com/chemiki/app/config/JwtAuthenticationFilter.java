@@ -25,6 +25,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+        if (requestURI.startsWith("/api/auth/login") ||
+                requestURI.startsWith("/api/auth/otp-verification") ||
+                requestURI.startsWith("/api/auth/register") ||
+                requestURI.startsWith("/api/auth/refresh-token") ||
+                requestURI.startsWith("/api/auth/forgot-password") ||
+                requestURI.startsWith("/api/auth/reset-password")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String jwt = getJwtFromRequest(request);
         if (jwt != null && tokenProvider.validateToken(jwt)) {
             String username = tokenProvider.getUsernameFromJWT(jwt);

@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +50,7 @@ public class MessageService {
             message.setReceiverId(request.getReceiverId());
             message.setContent(request.getContent());
             message.setRead(false);
-            message.setCreatedAt(LocalDateTime.now());
+            // Removed manual setCreatedAt - @CreationTimestamp will handle it automatically
             message = messageRepository.save(message);
 
             // 🔥 NEW: Send push notification for new message
@@ -188,7 +188,7 @@ public class MessageService {
 
         for (Message message : unreadMessages) {
             message.setRead(true);
-            message.setReadAt(LocalDateTime.now());
+            message.setReadAt(Instant.now()); // Changed from LocalDateTime.now() to Instant.now()
             messageRepository.save(message);
         }
     }

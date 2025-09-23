@@ -28,7 +28,7 @@ public class OtpService {
     }
 
     /**
-     * Send professional HTML OTP email for institutional users (Registration)
+     * Send simple HTML OTP email for institutional users (Registration)
      */
     public boolean sendOtpToEmail(String email, String otp, String username) {
         try {
@@ -37,7 +37,8 @@ public class OtpService {
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
-            helper.setSubject("Verify Your Chemiki Account - OTP Inside");
+            // OTP visible in notification/subject line
+            helper.setSubject("Chemiki Verification Code: " + otp);
 
             String htmlContent = createRegistrationEmailTemplate(username, otp);
             helper.setText(htmlContent, true);
@@ -90,7 +91,8 @@ public class OtpService {
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
-            helper.setSubject("Reset Your Chemiki Password - OTP Inside");
+            // OTP visible in notification/subject line
+            helper.setSubject("Chemiki Reset Code: " + otp);
 
             String htmlContent = createPasswordResetEmailTemplate(username, otp);
             helper.setText(htmlContent, true);
@@ -134,92 +136,59 @@ public class OtpService {
     }
 
     /**
-     * Create registration HTML email template
+     * Create simple registration HTML email template
      */
     private String createRegistrationEmailTemplate(String username, String otp) {
         return String.format("""
             <!DOCTYPE html>
-            <html lang="en">
+            <html>
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Chemiki OTP Verification</title>
             </head>
-            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
-                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+            <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
+                <div style="max-width: 500px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     
                     <!-- Header -->
-                    <div style="background: linear-gradient(135deg, #667eea 0%%, #764ba2 100%%); padding: 40px 20px; text-align: center;">
-                        <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-                            🧪 Chemiki
-                        </h1>
-                        <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">
-                            Your Neighborhood Connection Platform
-                        </p>
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #333; margin: 0; font-size: 24px;">🧪 Chemiki</h1>
+                        <p style="color: #666; margin: 5px 0 0 0;">Account Verification</p>
                     </div>
                     
-                    <!-- Main Content -->
-                    <div style="padding: 40px 30px;">
-                        <h2 style="color: #333333; margin-bottom: 20px; font-size: 24px;">
-                            Welcome to Chemiki, %s!
-                        </h2>
-                        
-                        <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-                            Thank you for joining our community platform. To complete your account verification, 
-                            please use the One-Time Password (OTP) below:
+                    <!-- Content -->
+                    <div>
+                        <p style="color: #333; font-size: 16px; margin-bottom: 20px;">
+                            Hi %s,
                         </p>
                         
-                        <!-- OTP Box -->
-                        <div style="background-color: #f8f9fa; border: 2px dashed #667eea; border-radius: 10px; padding: 30px; text-align: center; margin: 30px 0;">
-                            <p style="color: #666666; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-                                Your Verification Code
-                            </p>
-                            <div style="font-size: 32px; font-weight: bold; color: #667eea; letter-spacing: 8px; margin: 10px 0;">
+                        <p style="color: #666; font-size: 14px; margin-bottom: 25px;">
+                            Your verification code for Chemiki registration:
+                        </p>
+                        
+                        <!-- OTP -->
+                        <div style="background-color: #f8f9fa; border: 2px solid #007bff; border-radius: 6px; padding: 20px; text-align: center; margin: 25px 0;">
+                            <div style="font-size: 28px; font-weight: bold; color: #007bff; letter-spacing: 4px;">
                                 %s
                             </div>
-                            <p style="color: #999999; font-size: 12px; margin-top: 15px;">
-                                ⏰ This code expires in 15 minutes
+                            <p style="color: #888; font-size: 12px; margin: 10px 0 0 0;">
+                                Valid for 15 minutes
                             </p>
                         </div>
                         
-                        <!-- Instructions -->
-                        <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
-                            <p style="color: #856404; font-size: 14px; margin: 0;">
-                                <strong>Instructions:</strong><br>
-                                1. Return to the Chemiki app<br>
-                                2. Enter this verification code<br>
-                                3. Complete your registration
-                            </p>
-                        </div>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                            Enter this code in the app to complete your registration.
+                        </p>
                         
-                        <p style="color: #666666; font-size: 14px; line-height: 1.6; margin-top: 30px;">
-                            If you didn't request this verification code, please ignore this email. 
-                            Your account security is important to us.
+                        <p style="color: #888; font-size: 12px; margin-top: 30px;">
+                            If you didn't request this, please ignore this email.
                         </p>
                     </div>
                     
                     <!-- Footer -->
-                    <div style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e9ecef;">
-                        <p style="color: #6c757d; font-size: 14px; margin-bottom: 10px;">
-                            Need help? Contact our support team
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <p style="color: #888; font-size: 12px; margin: 0;">
+                            © 2024 Chemiki - Building stronger neighborhoods
                         </p>
-                        <p style="color: #6c757d; font-size: 12px; margin: 0;">
-                            © 2024 Chemiki. All rights reserved.<br>
-                            Building stronger neighborhoods, one connection at a time.
-                        </p>
-                        
-                        <!-- Social Links -->
-                        <div style="margin-top: 20px;">
-                            <a href="#" style="display: inline-block; margin: 0 10px; color: #667eea; text-decoration: none; font-size: 12px;">
-                                📱 Mobile App
-                            </a>
-                            <a href="#" style="display: inline-block; margin: 0 10px; color: #667eea; text-decoration: none; font-size: 12px;">
-                                🌐 Website
-                            </a>
-                            <a href="#" style="display: inline-block; margin: 0 10px; color: #667eea; text-decoration: none; font-size: 12px;">
-                                📧 Support
-                            </a>
-                        </div>
                     </div>
                     
                 </div>
@@ -232,82 +201,64 @@ public class OtpService {
     }
 
     /**
-     * Create password reset HTML email template
+     * Create simple password reset HTML email template
      */
     private String createPasswordResetEmailTemplate(String username, String otp) {
         return String.format("""
             <!DOCTYPE html>
-            <html lang="en">
+            <html>
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Chemiki Password Reset</title>
             </head>
-            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
-                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+            <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
+                <div style="max-width: 500px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     
                     <!-- Header -->
-                    <div style="background: linear-gradient(135deg, #dc3545 0%%, #c82333 100%%); padding: 40px 20px; text-align: center;">
-                        <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-                            🔐 Chemiki
-                        </h1>
-                        <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">
-                            Password Reset Request
-                        </p>
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #333; margin: 0; font-size: 24px;">🔐 Chemiki</h1>
+                        <p style="color: #666; margin: 5px 0 0 0;">Password Reset</p>
                     </div>
                     
-                    <!-- Main Content -->
-                    <div style="padding: 40px 30px;">
-                        <h2 style="color: #333333; margin-bottom: 20px; font-size: 24px;">
-                            Password Reset Request
-                        </h2>
-                        
-                        <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+                    <!-- Content -->
+                    <div>
+                        <p style="color: #333; font-size: 16px; margin-bottom: 20px;">
                             Hi %s,
                         </p>
                         
-                        <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-                            We received a request to reset your Chemiki account password. 
-                            Use the One-Time Password (OTP) below to complete the reset process:
+                        <p style="color: #666; font-size: 14px; margin-bottom: 25px;">
+                            Your password reset code for Chemiki:
                         </p>
                         
-                        <!-- OTP Box -->
-                        <div style="background-color: #f8f9fa; border: 2px dashed #dc3545; border-radius: 10px; padding: 30px; text-align: center; margin: 30px 0;">
-                            <p style="color: #666666; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-                                Your Reset Code
-                            </p>
-                            <div style="font-size: 32px; font-weight: bold; color: #dc3545; letter-spacing: 8px; margin: 10px 0;">
+                        <!-- OTP -->
+                        <div style="background-color: #f8f9fa; border: 2px solid #dc3545; border-radius: 6px; padding: 20px; text-align: center; margin: 25px 0;">
+                            <div style="font-size: 28px; font-weight: bold; color: #dc3545; letter-spacing: 4px;">
                                 %s
                             </div>
-                            <p style="color: #999999; font-size: 12px; margin-top: 15px;">
-                                ⏰ This code expires in 15 minutes
+                            <p style="color: #888; font-size: 12px; margin: 10px 0 0 0;">
+                                Valid for 15 minutes
                             </p>
                         </div>
                         
-                        <!-- Security Notice -->
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                            Enter this code in the app to reset your password.
+                        </p>
+                        
                         <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
-                            <p style="color: #856404; font-size: 14px; margin: 0;">
-                                <strong>Security Notice:</strong><br>
-                                • Don't share this code with anyone<br>
-                                • We'll never ask for your password or OTP via phone/email<br>
-                                • This request was made from your registered account
+                            <p style="color: #856404; font-size: 13px; margin: 0;">
+                                <strong>Security:</strong> Don't share this code with anyone.
                             </p>
                         </div>
                         
-                        <p style="color: #666666; font-size: 14px; line-height: 1.6; margin-top: 30px;">
-                            If you didn't request this password reset, please ignore this email and consider 
-                            changing your password as a precaution. Your account security is important to us.
+                        <p style="color: #888; font-size: 12px; margin-top: 30px;">
+                            If you didn't request this, please ignore this email.
                         </p>
                     </div>
                     
                     <!-- Footer -->
-                    <div style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e9ecef;">
-                        <p style="color: #6c757d; font-size: 14px; margin-bottom: 10px;">
-                            Need help? Contact our support team
-                        </p>
-                        <p style="color: #6c757d; font-size: 12px; margin: 0;">
-                            © 2024 Chemiki. All rights reserved.<br>
-                            Building stronger neighborhoods, one connection at a time.
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <p style="color: #888; font-size: 12px; margin: 0;">
+                            © 2024 Chemiki - Building stronger neighborhoods
                         </p>
                     </div>
                     

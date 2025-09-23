@@ -52,8 +52,7 @@ public class JobService {
             job.setCategory(""); // Set as empty string for now as requested
             job.setOpen(true);
             job.setUserId(userId);
-            job.setCreatedAt(LocalDateTime.now());
-            job.setUpdatedAt(LocalDateTime.now());
+
             job = jobRepository.save(job);
 // 🔥 NEW: Send broadcast notification for job posting
             String title = "💼 New Job: " + job.getTitle();
@@ -163,8 +162,7 @@ public class JobService {
             }
 
             job.setDeleted(true);
-            job.setUpdatedAt(LocalDateTime.now());
-            jobRepository.save(job);
+             jobRepository.save(job);
 
             return ApiResponse.success(null, "Job deleted successfully");
         } catch (ResponseStatusException e) {
@@ -185,7 +183,7 @@ public class JobService {
             }
 
             job.setOpen(false);
-            job.setUpdatedAt(LocalDateTime.now());
+
             job = jobRepository.save(job);
 
             User owner = userRepository.findById(job.getUserId())

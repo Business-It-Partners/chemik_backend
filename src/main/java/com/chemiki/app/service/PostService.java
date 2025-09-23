@@ -81,8 +81,7 @@ public class PostService {
             post.setPostType(request.getPostType());
             post.setImagesUrls(imageUrls);
             post.setLink(request.getLink());
-            post.setCreatedAt(LocalDateTime.now());
-            post.setUpdatedAt(LocalDateTime.now());
+
             post.setActive(true);
             post.setDeleted(false);
 
@@ -168,8 +167,7 @@ public class PostService {
                 PostView postView = new PostView();
                 postView.setPostId(postId);
                 postView.setUserId(currentUserId);
-                postView.setViewedAt(LocalDateTime.now());
-                postViewRepository.save(postView);
+                 postViewRepository.save(postView);
 
                 // Increment view count in post
                 postRepository.incrementViewCount(postId);
@@ -196,8 +194,7 @@ public class PostService {
                 return ApiResponse.error("You are not authorized to delete this post", "UNAUTHORIZED");
             }
             post.setDeleted(true);
-            post.setUpdatedAt(LocalDateTime.now());
-            postRepository.save(post);
+             postRepository.save(post);
             return ApiResponse.success(null, "Post deleted successfully");
         } catch (Exception e) {
             return ApiResponse.error("Failed to delete post: " + e.getMessage(), "INTERNAL_SERVER_ERROR");
@@ -211,8 +208,7 @@ public class PostService {
             Page<Post> posts = postRepository.findUserPosts(userId, pageable);
             for (Post post : posts.getContent()) {
                 post.setDeleted(true);
-                post.setUpdatedAt(LocalDateTime.now());
-            }
+             }
             postRepository.saveAll(posts.getContent());
             return ApiResponse.success("All posts deleted successfully", "Posts deleted");
         } catch (Exception e) {
@@ -259,23 +255,12 @@ public class PostService {
         dto.setCreatedAt(post.getCreatedAt());
         dto.setUpdatedAt(post.getUpdatedAt());
         dto.setActive(post.isActive());
-        dto.setTimeAgo(calculateTimeAgo(post.getCreatedAt()));
+        dto.setTimeAgo( "");
         dto.setHasViewedByCurrentUser(postViewRepository.existsByPostIdAndUserId(post.getId(), currentUserId));
         return dto;
     }
 
     // Calculate time ago
-    private String calculateTimeAgo(LocalDateTime createdAt) {
-        LocalDateTime now = LocalDateTime.now();
-        long minutes = ChronoUnit.MINUTES.between(createdAt, now);
-        long hours = ChronoUnit.HOURS.between(createdAt, now);
-        long days = ChronoUnit.DAYS.between(createdAt, now);
-        if (minutes < 1) return "Just now";
-        if (minutes < 60) return minutes + "m ago";
-        if (hours < 24) return hours + "h ago";
-        if (days < 7) return days + "d ago";
-        return createdAt.toLocalDate().toString();
-    }
 
     // Helper method for notifications
     private String getNotificationTitle(String postType,   boolean isInstitutionalUser) {

@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Service
@@ -31,6 +32,7 @@ public class OtpVerificationService {
             String token = request.getToken();
             String email = request.getEmail();
             String otpCode = request.getOtp();
+            System.out.println("temp user email: " + email);
 
             if (token == null || token.isEmpty() || otpCode == null || otpCode.isEmpty()) {
                 return ApiResponse.error("Token and OTP code are required", "INVALID_INPUT");
@@ -43,7 +45,7 @@ public class OtpVerificationService {
 
             // Find OTP based on user type
             Otp otp;
-            otp = otpRepository.findByTokenAndEmailAndExpiresAtAfter(token, email, LocalDateTime.now())
+            otp = otpRepository.findByTokenAndEmailAndExpiresAtAfter(token, email, Instant.now())
                     .orElseThrow(() -> new ResourceNotFoundException("Invalid or expired OTP"));
 
             // Validate OTP code
@@ -72,8 +74,7 @@ public class OtpVerificationService {
             user.setInstitutionCategory(tempUser.getInstitutionCategory());
             user.setVerified(false);
             user.setWebsite("");
-            user.setCreatedAt(LocalDateTime.now());
-            user.setUpdatedAt(LocalDateTime.now());
+
             userRepository.save(user);
 
             // Clean up
@@ -87,7 +88,11 @@ public class OtpVerificationService {
         } catch (ResourceNotFoundException e) {
             return ApiResponse.error(e.getMessage(), e.getMessage().contains("OTP") ? "INVALID_OTP" : "TEMP_USER_NOT_FOUND");
         } catch (Exception e) {
+            System.out.println("Error during OTP verification: " + e.getMessage());
             return ApiResponse.error("An error occurred during OTP verification", "INTERNAL_SERVER_ERROR");
         }
     }
+
+
+
 }

@@ -14,13 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
-
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +28,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    private final FCMService fcmService; // 🔥 NEW: Added FCM service
+    private final FCMService fcmService; // Added FCM service
 
     // Create a new comment
     public ApiResponse<CommentResponseDTO> createComment(CreateCommentRequestDTO request, Long userId) {
@@ -49,8 +48,7 @@ public class CommentService {
             comment.setPostId(request.getPostId());
             comment.setUserId(userId);
             comment.setContent(request.getContent());
-            comment.setCreatedAt(LocalDateTime.now());
-            comment.setUpdatedAt(LocalDateTime.now());
+            // Removed manual timestamp setting - @CreationTimestamp and @UpdateTimestamp will handle it
             comment.setDeleted(false);
 
             comment = commentRepository.save(comment);
@@ -58,7 +56,7 @@ public class CommentService {
             // Increment comment count on the post
             postRepository.incrementCommentCount(request.getPostId());
 
-            // 🔥 NEW: Send notification to post owner (if not commenting on own post)
+            // Send notification to post owner (if not commenting on own post)
             if (!post.getUserId().equals(userId)) {
                 fcmService.sendCommentNotification(userId, post.getUserId(), request.getPostId(), request.getContent());
             }
@@ -112,7 +110,7 @@ public class CommentService {
 
             // Soft delete the comment
             comment.setDeleted(true);
-            comment.setUpdatedAt(LocalDateTime.now());
+            // @UpdateTimestamp will automatically update the updatedAt field
             commentRepository.save(comment);
 
             // Decrement comment count on the post
@@ -145,17 +143,22 @@ public class CommentService {
         return dto;
     }
 
-    // Helper method to calculate "time ago"
-    private String calculateTimeAgo(LocalDateTime createdAt) {
-        LocalDateTime now = LocalDateTime.now();
-        long minutes = ChronoUnit.MINUTES.between(createdAt, now);
-        long hours = ChronoUnit.HOURS.between(createdAt, now);
-        long days = ChronoUnit.DAYS.between(createdAt, now);
+    // Helper method to calculate "time ago" - Updated for Instant
+    private String calculateTimeAgo(Instant createdAt) {
+        Instant now = Instant.now();
+        Duration duration = Duration.between(createdAt, now);
+
+        long minutes = duration.toMinutes();
+        long hours = duration.toHours();
+        long days = duration.toDays();
 
         if (minutes < 1) return "Just now";
         if (minutes < 60) return minutes + "m ago";
         if (hours < 24) return hours + "h ago";
         if (days < 7) return days + "d ago";
-        return createdAt.toLocalDate().toString();
+
+        // Convert to LocalDate for older dates
+        LocalDate createdDate = createdAt.atZone(ZoneId.systemDefault()).toLocalDate();
+        return createdDate.toString();
     }
 }

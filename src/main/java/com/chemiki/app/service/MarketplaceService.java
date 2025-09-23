@@ -90,8 +90,7 @@ public class MarketplaceService {
             product.setAvailable(true);
             product.setUserId(userId);
             product.setProductImageUrls(imageUrls);
-            product.setCreatedAt(LocalDateTime.now());
-            product.setUpdatedAt(LocalDateTime.now());
+
             product = productRepository.save(product);
 
             // Map to response DTO with all fields
@@ -122,6 +121,9 @@ public class MarketplaceService {
     private String generateImageUrl(String fileName) {
         return baseUrl + "/uploads/marketplace-images/" + fileName;
     }
+
+
+
     public ApiResponse<List<ProductResponseDTO>> getAllProducts(String category) {
         try {
             List<Product> products;
@@ -153,6 +155,7 @@ public class MarketplaceService {
                 dto.setAvailable(product.isAvailable());
                 dto.setUserId(product.getUserId());
                 dto.setUsername(owner != null ? owner.getUsername() : "Unknown");
+                dto.setProfilePicture(owner != null ? owner.getProfilePhotoUrl() : null);
                 dto.setImages(product.getProductImageUrls());
                 dto.setCreatedAt(product.getCreatedAt());
                 dto.setUpdatedAt(product.getUpdatedAt());
@@ -187,6 +190,7 @@ public class MarketplaceService {
             dto.setAvailable(product.isAvailable());
             dto.setUserId(product.getUserId());
             dto.setUsername(owner.getUsername());
+            dto.setProfilePicture(owner.getProfilePhotoUrl());
              dto.setImages(product.getProductImageUrls());
             dto.setCreatedAt(product.getCreatedAt());
             dto.setUpdatedAt(product.getUpdatedAt());
@@ -209,8 +213,7 @@ public class MarketplaceService {
             }
 
             product.setDeleted(true);
-            product.setUpdatedAt(LocalDateTime.now());
-            productRepository.save(product);
+             productRepository.save(product);
 
             return ApiResponse.success(null, "Product soft deleted successfully");
         } catch (ResponseStatusException e) {
@@ -232,8 +235,7 @@ public class MarketplaceService {
 
             // Update availability and timestamp
             product.setAvailable(isAvailable);
-            product.setUpdatedAt(LocalDateTime.now());
-            product = productRepository.save(product);
+             product = productRepository.save(product);
 
             // Get owner details for response
             User owner = userRepository.findById(product.getUserId())

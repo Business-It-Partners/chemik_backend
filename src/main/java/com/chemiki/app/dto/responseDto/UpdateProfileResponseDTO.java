@@ -1,6 +1,9 @@
 package com.chemiki.app.dto.responseDto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,6 +22,8 @@ public class UpdateProfileResponseDTO {
     private String institutionCategory;
     private boolean isVerified;
     private String website; // Added website field
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant updatedAt;
 }

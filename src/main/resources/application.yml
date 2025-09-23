@@ -1,9 +1,13 @@
-# SECURE Production Application Configuration
 spring:
   application:
     name: Chemiki
 
-  # ✅ SECURE: Use environment variables for database
+  # Timezone Configuration for UTC handling
+  jackson:
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+
   datasource:
     url: ${DB_URL:jdbc:postgresql://dgclick.com/chimeki_developer}
     username: ${DB_USERNAME:dgUser}
@@ -17,7 +21,6 @@ spring:
       connection-timeout: 20000
       connection-test-query: SELECT 1
 
-  # ✅ SECURE: File upload limits
   servlet:
     multipart:
       enabled: true
@@ -27,14 +30,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate  # ✅ SECURE: Never use 'update' in production
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: false
+        # UTC timezone for database operations
+        jdbc:
+          time_zone: UTC
 
-  # ✅ SECURE: Mail configuration with environment variables
   mail:
     host: smtp.gmail.com
     port: 587
@@ -47,30 +52,28 @@ spring:
           starttls:
             enable: true
 
-# ✅ SECURE: JWT configuration with environment variables
 jwt:
-  secret: ${JWT_SECRET:R0hvSzdnQkhtNWtFbUJwdVJtT1BDR0V0VEcxY09qTlQ=}  # Base64 encoded
-  accessTokenExpiration: ${JWT_ACCESS_EXPIRATION:900000}    # 15 minutes
-  refreshTokenExpiration: ${JWT_REFRESH_EXPIRATION:604800000} # 7 days
+  secret: ${JWT_SECRET:7PKPGLF5mVcpB56SGvWw4Qi5agdyaKsXDjDfuyOkjsg=}
+  accessTokenExpiration: ${JWT_ACCESS_EXPIRATION:900000}
+  refreshTokenExpiration: ${JWT_REFRESH_EXPIRATION:604800000}
 
-
-# Application configuration
 app:
-  base-url: ${APP_BASE_URL:http://192.168.18.12:8080}
+  base-url: https://test.gajuri.com
+#    http://192.168.18.12:8080
+  #  https://test.gajuri.com
   firebase-configuration-file: firebase-adminsdk.json
   email:
     from: ${EMAIL_FROM:noreply@gajuri.com}
 
-# Server configuration
 server:
-  port: ${SERVER_PORT:8080}
+  port: 5072
+  #    5072
   tomcat:
     connection-timeout: 30000
   servlet:
     session:
       timeout: 1800
 
-# ✅ PRODUCTION: Proper logging configuration
 logging:
   level:
     root: INFO
@@ -90,7 +93,6 @@ logging:
       max-history: 30
       clean-history-on-start: false
 
-# ✅ PRODUCTION: Health check and monitoring
 management:
   endpoints:
     web:
@@ -102,7 +104,6 @@ management:
       show-details: when-authorized
       show-components: always
 
-# ✅ CORS configuration
 cors:
   allowed-origins: ${CORS_ORIGINS:http://localhost:5173,https://dgclick.com}
   allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"

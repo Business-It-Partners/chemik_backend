@@ -1,26 +1,19 @@
-// folder: com.chemiki.app.repository
-// purpose: Provides data access methods for Otp entity
 package com.chemiki.app.repository;
 
 import com.chemiki.app.model.Otp;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying; // Add this
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Optional;
 
 @Repository
 public interface OtpRepository extends JpaRepository<Otp, Long> {
-    // For general users (phone-based OTP)
-    Optional<Otp> findByTokenAndPhoneNumberAndExpiresAtAfter(String token, String phoneNumber, LocalDateTime currentTime);
+    @Modifying // Add this
+    void deleteByEmail(String email);
 
-    // For email-based OTP
-    Optional<Otp> findByTokenAndEmailAndExpiresAtAfter(String token, String email, LocalDateTime currentTime);
+    Optional<Otp> findByTokenAndEmailAndExpiresAtAfter(String token, String email, Instant currentTime);
 
-    // Clean up expired OTPs
-    void deleteByExpiresAtBefore(LocalDateTime currentTime);
+    void deleteByExpiresAtBefore(Instant currentTime); // Already provided, ensure it’s used
 }
-
-
-
-

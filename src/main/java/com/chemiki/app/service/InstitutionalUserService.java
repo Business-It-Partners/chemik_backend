@@ -73,8 +73,7 @@ public class InstitutionalUserService {
             user.setWard(request.getWard());
             user.setInstitutionCategory(request.getInstitutionCategory());
             user.setVerified(true); // Mark as verified
-            user.setCreatedAt(LocalDateTime.now());
-            user.setUpdatedAt(LocalDateTime.now());
+
             user = userRepository.save(user);
 
             // Convert to response DTO

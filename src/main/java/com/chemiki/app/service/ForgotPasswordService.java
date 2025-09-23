@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,24 +45,16 @@ public class ForgotPasswordService {
                 return ApiResponse.error("Please provide either phone number or email, not both", "INVALID_INPUT");
             }
 
-            // Find user based on provided identifier
-            User user = null;
-            String identifier = null;
-            String deliveryMethod = null;
 
-            if (hasPhone) {
-                user = userRepository.findByPhoneNumber(phoneNumber).orElse(null);
-                identifier = phoneNumber;
-                deliveryMethod = "phone";
-            } else {
+
                 // Find user by email
                 Optional<User> userOptional = userRepository.findAll().stream()
                         .filter(u -> email.equals(u.getEmail()))
                         .findFirst();
-                user = userOptional.orElse(null);
-                identifier = email;
-                deliveryMethod = "email";
-            }
+            User user  = userOptional.orElse(null);
+            String identifier = email;
+            String deliveryMethod  = "email";
+
 
             if (user == null) {
                 String errorMessage = hasPhone ?
@@ -82,14 +75,13 @@ public class ForgotPasswordService {
             // Create new password reset request
             PasswordReset passwordReset = new PasswordReset();
             passwordReset.setToken(UUID.randomUUID().toString());
-            passwordReset.setOtp(otpCode);
-            passwordReset.setCreatedAt(LocalDateTime.now());
-            passwordReset.setExpiresAt(LocalDateTime.now().plusMinutes(15));
+
 
 
             passwordReset.setEmail(email);
             passwordReset.setPhoneNumber(null);
             passwordReset.setDeliveryMethod("email");
+            passwordReset.setOtp(otpCode);
             boolean otpSent  = otpService.sendPasswordResetOtpToEmail(email, otpCode, user.getUsername());
 
 
@@ -133,7 +125,7 @@ public class ForgotPasswordService {
 
             // Find password reset request by token first
             PasswordReset passwordReset = passwordResetRepository
-                    .findByTokenAndExpiresAtAfter(token, LocalDateTime.now())
+                    .findByTokenAndExpiresAtAfter(token, Instant.now())
                     .orElse(null);
 
             if (passwordReset == null) {
@@ -162,8 +154,7 @@ public class ForgotPasswordService {
 
             // Update password
             user.setPassword(passwordEncoder.encode(newPassword));
-            user.setUpdatedAt(LocalDateTime.now());
-            userRepository.save(user);
+             userRepository.save(user);
 
             // Clean up - delete the password reset request
             passwordResetRepository.delete(passwordReset);

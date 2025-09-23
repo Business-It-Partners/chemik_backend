@@ -1,8 +1,13 @@
+
+// MODEL: Post - For social media posts
 package com.chemiki.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -37,10 +42,14 @@ public class Post {
     private String link; // Optional: Link
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
 
     @Column
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    @UpdateTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant updatedAt;
 
     @Column
     private boolean deleted = false; // Soft delete flag

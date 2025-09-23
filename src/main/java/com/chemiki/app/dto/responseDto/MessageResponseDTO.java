@@ -1,7 +1,8 @@
 package com.chemiki.app.dto.responseDto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Data
 public class MessageResponseDTO {
@@ -14,6 +15,10 @@ public class MessageResponseDTO {
     private String receiverProfilePicture; // NEW: Receiver's profile picture URL
     private String content;
     private boolean isRead;
-    private LocalDateTime createdAt;
-    private LocalDateTime readAt;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant readAt;
 }

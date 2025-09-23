@@ -1,8 +1,13 @@
+
+// MODEL: User - Main user entity
 package com.chemiki.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.Instant;
 
 @Data
 @Entity
@@ -22,10 +27,8 @@ public class User {
     @Column
     private String email;
 
-
     @Column
     private String website;
-
 
     @Column(nullable = false)
     private String phoneNumber;
@@ -58,8 +61,12 @@ public class User {
     private boolean verified = false;
 
     @Column
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
 
     @Column
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    @UpdateTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant updatedAt;
 }

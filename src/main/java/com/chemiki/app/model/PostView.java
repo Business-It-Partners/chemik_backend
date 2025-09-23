@@ -1,12 +1,16 @@
+
+// MODEL: PostView - For tracking post views
 package com.chemiki.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import java.time.Instant;
 
 @Data
 @Entity
-@Table(name = "post_views")
+@Table(name = "post_views", uniqueConstraints = @UniqueConstraint(columnNames = {"postId", "userId"}))
 public class PostView {
 
     @Id
@@ -20,9 +24,7 @@ public class PostView {
     private Long userId; // Who viewed the post
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime viewedAt = LocalDateTime.now();
-
-    // Unique constraint to prevent duplicate views from same user
-    @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"postId", "userId"}))
-    public static class PostViewConstraint {}
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant viewedAt;
 }

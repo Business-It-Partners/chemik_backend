@@ -1,8 +1,12 @@
+
+// MODEL: Otp - For OTP verification
 package com.chemiki.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import java.time.Instant;
 
 @Data
 @Entity
@@ -13,9 +17,8 @@ public class Otp {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true) // Ensure unique token
     private String token;
-
     @Column(nullable = false)
     private String otp;
 
@@ -29,8 +32,18 @@ public class Otp {
     private String deliveryMethod; // "phone" or "email"
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
 
     @Column(nullable = false)
-    private LocalDateTime expiresAt = LocalDateTime.now().plusMinutes(15);
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant expiresAt;
+
+    @PrePersist
+    protected void onCreate() {
+        if (expiresAt == null) {
+            expiresAt = Instant.now().plusSeconds(15 * 60); // 15 minutes
+        }
+    }
 }

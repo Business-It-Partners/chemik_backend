@@ -10,15 +10,18 @@ import com.chemiki.app.repository.CommentRepository;
 import com.chemiki.app.repository.PostRepository;
 import com.chemiki.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,54 +31,93 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    private final FCMService fcmService; // Added FCM service
+    private final FCMService fcmService;
+    private final RestTemplate restTemplate; // Injected from config
 
-    // Create a new comment
+    private static final String HF_API_URL = "https://abishektiwari-nepali-offensive-detector.hf.space/detect";
+
+    // ============== OFFENSIVE CONTENT CHECK ==============
+    private boolean isOffensiveNepali(String text) {
+        try {
+            Map<String, String> request = new HashMap<>();
+            request.put("text", text);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Map<String, String>> entity = new HttpEntity<>(request, headers);
+
+            ResponseEntity<Map> response = restTemplate.postForEntity(HF_API_URL, entity, Map.class);
+            Map<String, Object> result = (Map<String, Object>) response.getBody().get("result");
+
+            if (result == null || !(Boolean) result.get("success")) {
+                return false; // Fail open if API down
+            }
+
+            boolean isOffensive = (Boolean) result.get("is_offensive");
+            double confidence = ((Number) result.get("confidence")).doubleValue();
+
+            return isOffensive && confidence > 0.7;
+
+        } catch (Exception e) {
+            System.err.println("HF API Error: " + e.getMessage());
+            return false; // Fail open — don't block user
+        }
+    }
+
+    // ============== CREATE COMMENT ==============
     public ApiResponse<CommentResponseDTO> createComment(CreateCommentRequestDTO request, Long userId) {
         try {
             // Validate user
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
-            // Validate post exists and is active
+            // Validate post
             Post post = postRepository.findActivePostById(request.getPostId());
             if (post == null) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found or inactive");
             }
 
-            // Create and save comment
+            String content = request.getContent();
+
+//            // OFFENSIVE CONTENT FILTER
+//            if (isOffensiveNepali(content)) {
+//                return ApiResponse.error(
+//                        "राम्रो नागरिक बनौं र सदैव सकारात्मक कमेन्ट गरौं।",
+//                        "OFFENSIVE_CONTENT"
+//                );
+//            }
+
+            // Create comment
             Comment comment = new Comment();
             comment.setPostId(request.getPostId());
             comment.setUserId(userId);
-            comment.setContent(request.getContent());
-            // Removed manual timestamp setting - @CreationTimestamp and @UpdateTimestamp will handle it
+            comment.setContent(content);
             comment.setDeleted(false);
 
             comment = commentRepository.save(comment);
 
-            // Increment comment count on the post
+            // Update post comment count
             postRepository.incrementCommentCount(request.getPostId());
 
-            // Send notification to post owner (if not commenting on own post)
+            // Send FCM notification
             if (!post.getUserId().equals(userId)) {
-                fcmService.sendCommentNotification(userId, post.getUserId(), request.getPostId(), request.getContent());
+                fcmService.sendCommentNotification(userId, post.getUserId(), request.getPostId(), content);
             }
 
-            // Convert to response DTO
+            // Return response
             CommentResponseDTO responseDTO = convertToResponseDTO(comment, user, userId);
             return ApiResponse.success(responseDTO, "Comment added successfully");
 
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "POST_NOT_FOUND");
         } catch (Exception e) {
-            return ApiResponse.error("An error occurred while adding the comment: " + e.getMessage(), "INTERNAL_SERVER_ERROR");
+            return ApiResponse.error("An error occurred: " + e.getMessage(), "INTERNAL_SERVER_ERROR");
         }
     }
 
-    // Get all comments for a post
+    // ============== GET COMMENTS ==============
     public ApiResponse<List<CommentResponseDTO>> getCommentsByPostId(Long postId, Long currentUserId) {
         try {
-            // Validate post exists
             Post post = postRepository.findActivePostById(postId);
             if (post == null) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found or inactive");
@@ -97,23 +139,18 @@ public class CommentService {
         }
     }
 
-    // Delete a comment (soft delete)
+    // ============== DELETE COMMENT ==============
     public ApiResponse<Void> deleteComment(Long commentId, Long userId) {
         try {
             Comment comment = commentRepository.findActiveCommentById(commentId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
 
-            // Check if user owns this comment
             if (!comment.getUserId().equals(userId)) {
                 return ApiResponse.error("You are not authorized to delete this comment", "UNAUTHORIZED");
             }
 
-            // Soft delete the comment
             comment.setDeleted(true);
-            // @UpdateTimestamp will automatically update the updatedAt field
             commentRepository.save(comment);
-
-            // Decrement comment count on the post
             postRepository.decrementCommentCount(comment.getPostId());
 
             return ApiResponse.success(null, "Comment deleted successfully");
@@ -125,7 +162,7 @@ public class CommentService {
         }
     }
 
-    // Helper method to convert Comment to CommentResponseDTO
+    // ============== HELPER: DTO CONVERSION ==============
     private CommentResponseDTO convertToResponseDTO(Comment comment, User user, Long currentUserId) {
         CommentResponseDTO dto = new CommentResponseDTO();
         dto.setId(comment.getId());
@@ -138,12 +175,11 @@ public class CommentService {
         dto.setCreatedAt(comment.getCreatedAt());
         dto.setUpdatedAt(comment.getUpdatedAt());
         dto.setTimeAgo(calculateTimeAgo(comment.getCreatedAt()));
-        dto.setCanDelete(comment.getUserId().equals(currentUserId)); // Only comment owner can delete
-
+        dto.setCanDelete(comment.getUserId().equals(currentUserId));
         return dto;
     }
 
-    // Helper method to calculate "time ago" - Updated for Instant
+    // ============== HELPER: TIME AGO ==============
     private String calculateTimeAgo(Instant createdAt) {
         Instant now = Instant.now();
         Duration duration = Duration.between(createdAt, now);
@@ -157,7 +193,6 @@ public class CommentService {
         if (hours < 24) return hours + "h ago";
         if (days < 7) return days + "d ago";
 
-        // Convert to LocalDate for older dates
         LocalDate createdDate = createdAt.atZone(ZoneId.systemDefault()).toLocalDate();
         return createdDate.toString();
     }

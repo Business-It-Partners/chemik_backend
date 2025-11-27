@@ -14,8 +14,17 @@ public class UpdateProfileRequestDTO {
     @JsonIgnore // This will be ignored in JSON requests
     private MultipartFile profilePicture;
 
+    // For cover picture upload (multipart/form-data requests)
+    @JsonIgnore // This will be ignored in JSON requests
+    private MultipartFile coverPicture;
+
     // Helper method to check if request has profile picture
     public boolean hasProfilePicture() {
         return profilePicture != null && !profilePicture.isEmpty();
+    }
+
+    // Helper method to check if request has cover picture
+    public boolean hasCoverPicture() {
+        return coverPicture != null && !coverPicture.isEmpty();
     }
 }

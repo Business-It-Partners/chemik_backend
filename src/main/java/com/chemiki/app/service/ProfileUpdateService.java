@@ -29,9 +29,6 @@ public class ProfileUpdateService {
     @Value("${app.base-url}")
     private String baseUrl;
 
-    // Folder to store profile images
-    private static final String PROFILE_UPLOAD_DIR = "uploads/profile-images/";
-
     public ApiResponse<UpdateProfileResponseDTO> updateProfile(UpdateProfileRequestDTO request, Long userId) {
         try {
             // Validate user exists
@@ -58,10 +55,15 @@ public class ProfileUpdateService {
 
             // Handle profile picture upload
             if (request.hasProfilePicture()) {
-                String profilePictureUrl = uploadImage(request.getProfilePicture(), "profile_");
+                String profilePictureUrl = uploadImage(request.getProfilePicture(), "profile-images", "profile_");
                 user.setProfilePhotoUrl(profilePictureUrl);
             }
 
+            // Handle cover picture upload
+            if (request.hasCoverPicture()) {
+                String coverPictureUrl = uploadImage(request.getCoverPicture(), "cover-images", "cover_");
+                user.setCoverPhotoUrl(coverPictureUrl);
+            }
 
             // Save user
             user = userRepository.save(user);
@@ -73,19 +75,16 @@ public class ProfileUpdateService {
         } catch (ResponseStatusException e) {
             return ApiResponse.error(e.getReason(), "USER_NOT_FOUND");
         } catch (IOException e) {
-            return ApiResponse.error("Failed to upload profile picture", "IMAGE_UPLOAD_FAILED");
+            return ApiResponse.error("Failed to upload image", "IMAGE_UPLOAD_FAILED");
         } catch (Exception e) {
             return ApiResponse.error("An error occurred while updating the profile", "INTERNAL_SERVER_ERROR");
         }
     }
 
-    // Get current user profile (for profile page)
-
-
     // Helper method to upload images
-    private String uploadImage(MultipartFile image, String prefix) throws IOException {
+    private String uploadImage(MultipartFile image, String relativeDir, String prefix) throws IOException {
         // Create upload directory if it doesn't exist
-        Path uploadPath = Paths.get(PROFILE_UPLOAD_DIR);
+        Path uploadPath = Paths.get("uploads/" + relativeDir + "/");
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
@@ -98,12 +97,12 @@ public class ProfileUpdateService {
         Files.copy(image.getInputStream(), filePath);
 
         // Generate URL
-        return generateImageUrl(fileName);
+        return generateImageUrl(relativeDir, fileName);
     }
 
     // Generate image URL based on environment
-    private String generateImageUrl(String fileName) {
-        return baseUrl + "/uploads/profile-images/" + fileName;
+    private String generateImageUrl(String relativeDir, String fileName) {
+        return baseUrl + "/uploads/" + relativeDir + "/" + fileName;
     }
 
     // Helper method to convert User to UpdateProfileResponseDTO (same as UserDetailResponseDTO)

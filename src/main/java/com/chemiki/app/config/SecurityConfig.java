@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/login", "/api/auth/otp-verification", "/api/auth/register", "/api/auth/refresh-token","/api/auth/forgot-password", "/api/auth/reset-password").permitAll()
                         .requestMatchers("/uploads/**").permitAll() // ✅ Allow all upload paths
                         .requestMatchers("/uploads/post-images/**").permitAll() // ✅ Specific paths
+                        .requestMatchers("/uploads/cover-images/**").permitAll() // ✅ Specific paths
                         .requestMatchers("/uploads/marketplace-images/**").permitAll() // ✅ Specific paths
                         .requestMatchers("/h2-console/**").permitAll()
 
@@ -52,7 +53,11 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-                "http://localhost:5173",        // frontend on PC
+                "http://localhost:5173",
+               " http://localhost:3000",
+                "http://192.168.18.49:3000",
+               "http://localhost:3000",
+               "https://gajuri.app",
                 "http://192.168.18.12:5173"     // frontend on phone
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));

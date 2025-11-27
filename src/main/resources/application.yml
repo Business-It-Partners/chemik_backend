@@ -67,6 +67,7 @@ app:
 
 server:
   port: 5072
+  #    8080
   #    5072
   tomcat:
     connection-timeout: 30000
@@ -105,7 +106,7 @@ management:
       show-components: always
 
 cors:
-  allowed-origins: ${CORS_ORIGINS:http://localhost:5173,https://dgclick.com}
+  allowed-origins: ${http://localhost:5173,http://localhost:3000,http://192.168.18.49:3000,    http://localhost:3000,https://gajuri.app}
   allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
   allowed-headers: "*"
   allow-credentials: true

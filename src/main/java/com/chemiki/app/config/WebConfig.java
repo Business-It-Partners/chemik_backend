@@ -11,7 +11,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173", "http://192.168.18.12:8080","http://192.168.18.12:5173") // Add mobile app origin
+                .allowedOrigins("http://localhost:5173","http://localhost:3000", "http://192.168.18.12:8080", " http://localhost:3000",
+                        "http://192.168.18.49:3000","http://192.168.18.12:5173","https://gajuri.app") // Add mobile app origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
@@ -29,6 +30,9 @@ public class WebConfig implements WebMvcConfigurer {
         // 🔥 NEW: Serve profile images
         registry.addResourceHandler("/uploads/profile-images/**")
                 .addResourceLocations("file:uploads/profile-images/");
+        // new for cover image ( cover-images)
+        registry.addResourceHandler("/uploads/cover-images/**")
+                .addResourceLocations("file:uploads/cover-images/");
 
         // Serve any other uploads
         registry.addResourceHandler("/uploads/**")

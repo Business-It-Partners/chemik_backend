@@ -6,10 +6,7 @@ import com.chemiki.app.dto.requestDto.LoginRequestDTO;
 import com.chemiki.app.dto.requestDto.OtpVerificationRequestDTO;
 import com.chemiki.app.dto.requestDto.RefreshTokenRequestDTO;
 import com.chemiki.app.dto.requestDto.RegisterRequestDTO;
-import com.chemiki.app.dto.responseDto.LoginResponseDTO;
-import com.chemiki.app.dto.responseDto.OtpVerificationResponseDTO;
-import com.chemiki.app.dto.responseDto.RegisterResponseDTO;
-import com.chemiki.app.dto.responseDto.UserDetailResponseDTO;
+import com.chemiki.app.dto.responseDto.*;
 import com.chemiki.app.service.LoginService;
 import com.chemiki.app.service.OtpVerificationService;
 import com.chemiki.app.service.RegistrationService;
@@ -17,7 +14,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
@@ -168,4 +169,17 @@ public class AuthController {
             return ResponseEntity.status(status).body(response);
         }
     }
+
+    @GetMapping("/general-user")
+    public ResponseEntity<ApiResponse<List<InstitutionalUserResponseDTO>>> getAllInstitutionalUsers(
+            @AuthenticationPrincipal UserDetails userDetails) {
+        ApiResponse<List<InstitutionalUserResponseDTO>> response = loginService.getAllGeneralUsers();
+
+        if (response.isSuccess()) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
 }

@@ -28,12 +28,16 @@ public class CommentController {
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = ((com.chemiki.app.config.CustomUserDetails) userDetails).getUser().getId();
         ApiResponse<CommentResponseDTO> response = commentService.createComment(request, userId);
+
         if (response.isSuccess()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } else {
             String errorCode = response.getErrorCode();
-            HttpStatus status = errorCode.equals("POST_NOT_FOUND") ?
-                    HttpStatus.NOT_FOUND : HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus status = switch (errorCode) {
+                case "POST_NOT_FOUND" -> HttpStatus.NOT_FOUND;
+                case "OFFENSIVE_CONTENT" -> HttpStatus.FORBIDDEN;
+                default -> HttpStatus.INTERNAL_SERVER_ERROR;
+            };
             return ResponseEntity.status(status).body(response);
         }
     }

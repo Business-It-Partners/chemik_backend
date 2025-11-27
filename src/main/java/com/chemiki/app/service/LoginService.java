@@ -3,6 +3,7 @@ package com.chemiki.app.service;
 import com.chemiki.app.config.JwtTokenProvider;
 import com.chemiki.app.dto.ApiResponse;
 import com.chemiki.app.dto.requestDto.LoginRequestDTO;
+import com.chemiki.app.dto.responseDto.InstitutionalUserResponseDTO;
 import com.chemiki.app.dto.responseDto.LoginResponseDTO;
 import com.chemiki.app.dto.responseDto.UserDetailResponseDTO;
 import com.chemiki.app.model.User;
@@ -16,7 +17,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -153,4 +156,48 @@ public class LoginService {
             return ApiResponse.error("An error occurred while retrieving user details", "INTERNAL_SERVER_ERROR");
         }
     }
+
+
+
+
+    public ApiResponse<List<InstitutionalUserResponseDTO>> getAllGeneralUsers() {
+        try {
+
+            // LATER: Uncomment this line to fetch only institutional users
+            List<User> generalUsers = userRepository.findByInstitutionalUserFalse();
+
+            List<InstitutionalUserResponseDTO> responseDTOs = generalUsers.stream()
+                    .map(this::convertToResponseDTO)
+                    .collect(Collectors.toList());
+
+            return ApiResponse.success(responseDTOs, "Peoples retrieved successfully");
+        } catch (Exception e) {
+            return ApiResponse.error("An error occurred while retrieving institutional users", "INTERNAL_SERVER_ERROR");
+        }
+    }
+
+
+    /**
+     * Convert User entity to InstitutionalUserResponseDTO
+     */
+    private InstitutionalUserResponseDTO convertToResponseDTO(User user) {
+        InstitutionalUserResponseDTO dto = new InstitutionalUserResponseDTO();
+        dto.setId(user.getId());
+        dto.setUsername(user.getUsername());
+        dto.setEmail(user.getEmail());
+        dto.setPhoneNumber(user.getPhoneNumber());
+        dto.setProfilePhotoUrl(user.getProfilePhotoUrl());
+        dto.setCoverPhotoUrl(user.getCoverPhotoUrl());
+        dto.setInstitutionCategory(user.getInstitutionCategory());
+        dto.setDistrict(user.getDistrict());
+        dto.setPalika(user.getPalika());
+        dto.setWard(user.getWard());
+        dto.setVerified(user.isVerified());
+        dto.setCreatedAt(user.getCreatedAt());
+
+
+
+        return dto;
+    }
+
 }
